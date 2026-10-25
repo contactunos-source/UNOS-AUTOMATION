@@ -168,7 +168,7 @@ export default function StepJourneySection() {
                         📞
                       </div>
                       <div>
-                        <p className="text-xs font-semibold text-neutral-900">Clinic Main Line (+91 9182078320)</p>
+                        <p className="text-xs font-semibold text-neutral-900">Clinic Main Line (Inbound Call)</p>
                         <p className="text-[11px] text-neutral-500">Live call routed to AI Receptionist</p>
                       </div>
                     </div>

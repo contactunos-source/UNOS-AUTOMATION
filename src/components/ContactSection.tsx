@@ -323,7 +323,7 @@ export default function ContactSection() {
                       value={form.phone}
                       onChange={handleChange}
                       autoComplete="tel"
-                      placeholder="+91 9182078320"
+                      placeholder="+1 (555) 000-0000"
                       className={inputClass}
                     />
                   </FormField>
