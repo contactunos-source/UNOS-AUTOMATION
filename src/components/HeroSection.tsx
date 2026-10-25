@@ -17,21 +17,21 @@ export default function HeroSection() {
       id="home"
       className="relative w-full min-h-[92vh] lg:min-h-screen bg-white flex flex-col justify-between overflow-hidden select-none"
     >
-      {/* ─── Static Visual: Two Matched Robotic Hands in the Middle ─── */}
+      {/* ─── Static Visual: Realistic Robotic Hand on Left & Realistic Human Hand on Right ─── */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-10"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/hero-two-robots.png"
-          alt="Two robotic hands reaching toward each other"
+          src="/images/hero-banner-realistic.jpg"
+          alt="Realistic robotic hand on left and realistic human hand on right reaching toward each other"
           className="w-full h-full object-cover object-center select-none pointer-events-none"
           loading="eager"
         />
       </div>
 
-      {/* ─── Top: Heading moved higher into available white space ─── */}
+      {/* ─── Top: Heading positioned in the open white space above the hands ─── */}
       <div className="relative z-30 pt-24 sm:pt-28 md:pt-32 px-6 text-center max-w-4xl mx-auto w-full">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight max-w-2xl mx-auto leading-[1.15]">
           <span className="block text-neutral-500 font-light">
@@ -43,7 +43,7 @@ export default function HeroSection() {
         </h1>
       </div>
 
-      {/* ─── Bottom: CTAs moved noticeably lower into available white space ─── */}
+      {/* ─── Bottom: CTAs positioned lower down in the open white space below the hands ─── */}
       <div className="relative z-30 pb-14 sm:pb-16 md:pb-20 px-6 text-center max-w-4xl mx-auto w-full pointer-events-auto">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full max-w-[280px] sm:max-w-none mx-auto">
           <a
