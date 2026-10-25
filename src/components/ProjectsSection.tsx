@@ -272,27 +272,16 @@ export default function ProjectsSection() {
                     <p className="text-xs text-neutral-400 italic pt-1">{demo.note}</p>
 
                     <div className="flex flex-wrap gap-3 pt-3">
-                      <motion.a
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.97 }}
-                        href={siteConfig.whatsappUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-900 text-white text-xs font-semibold rounded-full hover:bg-neutral-800 transition-colors shadow-sm"
-                      >
-                        <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366]" />
-                        <span>Try on WhatsApp</span>
-                      </motion.a>
                       <a
                         href="#contact"
                         onClick={(e) => {
                           e.preventDefault();
                           document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
                         }}
-                        className="inline-flex items-center gap-1.5 px-4 py-2.5 border border-neutral-300 text-neutral-700 text-xs font-semibold rounded-full hover:bg-neutral-50 transition-colors"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-900 text-white text-xs font-semibold rounded-full hover:bg-neutral-800 transition-colors shadow-sm"
                       >
-                        <span>Inquire Now</span>
-                        <span className="text-orange-500 font-bold">→</span>
+                        <span>Inquire About This Flow</span>
+                        <span className="text-orange-400 font-bold">→</span>
                       </a>
                     </div>
                   </div>

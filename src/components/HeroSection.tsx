@@ -139,8 +139,8 @@ export default function HeroSection() {
             animate={inView ? "show" : "hidden"}
             className="flex flex-col items-center"
           >
-            {/* Segmented Industry Switcher */}
-            <motion.div variants={itemVariants} className="mb-5">
+            {/* Segmented Industry Switcher (desktop only) */}
+            <motion.div variants={itemVariants} className="mb-5 hidden md:block">
               <div className="inline-flex items-center gap-1.5 p-1 bg-white/90 rounded-full border border-neutral-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.04)] backdrop-blur-md">
                 <button
                   onClick={() => setActiveIndustry("dental")}
@@ -168,7 +168,7 @@ export default function HeroSection() {
             {/* Main Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-900 leading-[1.08] max-w-4xl"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-900 leading-[1.12] max-w-4xl px-2 sm:px-0"
             >
               Make Your Business{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 relative inline-block">
@@ -180,23 +180,23 @@ export default function HeroSection() {
             {/* Supporting Copy */}
             <motion.p
               variants={itemVariants}
-              className="mt-5 text-base sm:text-lg lg:text-xl text-neutral-600 max-w-2xl leading-relaxed font-light"
+              className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-xl text-neutral-600 max-w-md sm:max-w-2xl leading-relaxed font-light px-3 sm:px-0"
             >
               {activeIndustry === "dental"
                 ? "AI voice agents, appointment booking automations, and modern websites that help dental practices capture patients and eliminate phone tag."
                 : "AI voice agents, intelligent automations, and modern websites that help service businesses capture leads and scale operations seamlessly."}
             </motion.p>
 
-            {/* CTAs */}
+            {/* CTAs with balanced mobile spacing */}
             <motion.div
               variants={itemVariants}
-              className="mt-8 flex flex-col sm:flex-row gap-3.5 items-center z-40 pointer-events-auto"
+              className="mt-12 sm:mt-10 md:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-3.5 items-center z-40 pointer-events-auto w-full max-w-[280px] sm:max-w-none mx-auto"
             >
               <a
                 href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2.5 px-8 py-3.5 bg-neutral-900 text-white text-sm font-semibold rounded-full hover:bg-neutral-800 transition-all shadow-xl shadow-neutral-900/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-900 hover:scale-[1.02] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-3.5 bg-neutral-900 text-white text-sm font-semibold rounded-full hover:bg-neutral-800 transition-all shadow-xl shadow-neutral-900/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-900 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <WhatsAppIcon className="w-4 h-4 text-[#25D366] transition-transform duration-200 group-hover:scale-110" />
                 <span>Chat on WhatsApp</span>
@@ -208,16 +208,16 @@ export default function HeroSection() {
                   e.preventDefault();
                   document.getElementById("journey")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="inline-flex items-center gap-2 px-8 py-3.5 border border-neutral-300 bg-white/90 text-neutral-800 text-sm font-semibold rounded-full hover:bg-white hover:border-neutral-400 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-400 shadow-xs hover:scale-[1.01] active:scale-[0.98] backdrop-blur-sm"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 border border-neutral-300 bg-white/90 text-neutral-800 text-sm font-semibold rounded-full hover:bg-white hover:border-neutral-400 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-400 shadow-xs hover:scale-[1.01] active:scale-[0.98] backdrop-blur-sm"
               >
                 Explore How It Works
               </a>
             </motion.div>
 
-            {/* Convergence Status Badge (appears when hands meet) */}
+            {/* Convergence Status Badge (desktop only) */}
             <motion.div
               style={{ opacity: badgeOpacity, y: badgeY }}
-              className="mt-7 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/95 border border-orange-200 shadow-md backdrop-blur-md pointer-events-none"
+              className="mt-7 hidden md:inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/95 border border-orange-200 shadow-md backdrop-blur-md pointer-events-none"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
@@ -242,7 +242,7 @@ export default function HeroSection() {
               rotate: humanRotate,
               opacity: humanOpacity,
             }}
-            className="absolute left-0 top-1/2 -translate-y-[45%] w-[480px] sm:w-[620px] lg:w-[740px] xl:w-[840px] pointer-events-none will-change-transform"
+            className="absolute left-0 top-[52%] md:top-1/2 -translate-y-[45%] w-[52vw] sm:w-[48vw] md:w-[480px] lg:w-[740px] xl:w-[840px] pointer-events-none will-change-transform"
           >
             {/* Subtle natural breathing float */}
             <motion.div
@@ -266,16 +266,16 @@ export default function HeroSection() {
               opacity: sparkOpacity,
               scale: sparkScale,
             }}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-30"
+            className="absolute left-1/2 top-[52%] md:top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-30"
           >
             <div className="relative flex items-center justify-center">
               {/* Radial glow aura */}
-              <div className="w-24 h-24 rounded-full bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 blur-xl opacity-80 animate-pulse" />
+              <div className="w-16 sm:w-24 h-16 sm:h-24 rounded-full bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 blur-xl opacity-80 animate-pulse" />
               {/* Core luminous point */}
-              <div className="absolute w-4 h-4 rounded-full bg-white shadow-[0_0_20px_6px_#f97316]" />
+              <div className="absolute w-3 sm:w-4 h-3 sm:h-4 rounded-full bg-white shadow-[0_0_20px_6px_#f97316]" />
               {/* Subtle cross light rays */}
-              <div className="absolute w-16 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent" />
-              <div className="absolute h-16 w-[2px] bg-gradient-to-b from-transparent via-white to-transparent" />
+              <div className="absolute w-12 sm:w-16 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent" />
+              <div className="absolute h-12 sm:h-16 w-[2px] bg-gradient-to-b from-transparent via-white to-transparent" />
             </div>
           </motion.div>
 
@@ -286,7 +286,7 @@ export default function HeroSection() {
               rotate: robotRotate,
               opacity: robotOpacity,
             }}
-            className="absolute right-0 top-1/2 -translate-y-[52%] w-[480px] sm:w-[620px] lg:w-[740px] xl:w-[840px] pointer-events-none will-change-transform"
+            className="absolute right-0 top-[52%] md:top-1/2 -translate-y-[52%] w-[52vw] sm:w-[48vw] md:w-[480px] lg:w-[740px] xl:w-[840px] pointer-events-none will-change-transform"
           >
             {/* Subtle natural breathing float */}
             <motion.div

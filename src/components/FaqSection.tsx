@@ -127,12 +127,14 @@ export default function FaqSection() {
             <p className="text-xs text-neutral-500 mt-0.5">Chat directly with the automation engineer behind UNOS.</p>
           </div>
           <a
-            href={siteConfig.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+            }}
             className="px-5 py-2.5 bg-neutral-900 text-white text-xs font-semibold rounded-full hover:bg-neutral-800 transition-colors shadow-sm flex-shrink-0"
           >
-            Ask on WhatsApp →
+            Get In Touch →
           </a>
         </div>
       </div>
