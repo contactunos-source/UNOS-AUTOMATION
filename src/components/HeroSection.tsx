@@ -15,39 +15,37 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-[90vh] lg:min-h-screen bg-white flex flex-col justify-between overflow-hidden select-none"
+      className="relative w-full min-h-[92vh] lg:min-h-screen bg-white flex flex-col justify-between overflow-hidden select-none"
     >
-      {/* Top spacer for navbar */}
-      <div className="h-16 lg:h-20 w-full shrink-0" />
-
-      {/* ─── Static Visual Background: Full-width Hands Spanning Left-to-Right ─── */}
+      {/* ─── Static Visual: Two Matched Robotic Hands in the Middle ─── */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-10"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/hero-ascii-banner.jpg"
-          alt="UNOS Automations hands"
+          src="/images/hero-two-robots.png"
+          alt="Two robotic hands reaching toward each other"
           className="w-full h-full object-cover object-center select-none pointer-events-none"
           loading="eager"
         />
       </div>
 
-      {/* ─── Central Hero Typography & CTAs (Near Top Two Lines, No Descriptive Text, Generous Button Spacing) ─── */}
-      <div className="relative z-30 max-w-4xl mx-auto px-6 text-center flex flex-col items-center my-auto -translate-y-6 sm:-translate-y-10 py-6 sm:py-8">
-        {/* Main Headline arranged cleanly across two lines near top */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[60px] tracking-tight max-w-2xl leading-[1.16]">
+      {/* ─── Top: Heading moved higher into available white space ─── */}
+      <div className="relative z-30 pt-24 sm:pt-28 md:pt-32 px-6 text-center max-w-4xl mx-auto w-full">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight max-w-2xl mx-auto leading-[1.15]">
           <span className="block text-neutral-500 font-light">
             Make Your Business
           </span>
-          <span className="block text-neutral-900 font-bold mt-1.5">
+          <span className="block text-neutral-900 font-bold mt-1">
             Work Smarter.
           </span>
         </h1>
+      </div>
 
-        {/* CTAs positioned lower with generous spacing to avoid overlapping hands */}
-        <div className="mt-14 sm:mt-20 md:mt-28 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full max-w-[280px] sm:max-w-none mx-auto pointer-events-auto">
+      {/* ─── Bottom: CTAs moved noticeably lower into available white space ─── */}
+      <div className="relative z-30 pb-14 sm:pb-16 md:pb-20 px-6 text-center max-w-4xl mx-auto w-full pointer-events-auto">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full max-w-[280px] sm:max-w-none mx-auto">
           <a
             href={siteConfig.whatsappUrl}
             target="_blank"
@@ -70,9 +68,6 @@ export default function HeroSection() {
           </a>
         </div>
       </div>
-
-      {/* Bottom spacer to maintain balanced vertical composition without unwanted text */}
-      <div className="h-8 lg:h-12 w-full shrink-0" />
     </section>
   );
 }
