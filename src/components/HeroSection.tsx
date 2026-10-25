@@ -26,7 +26,6 @@ export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const inView = useInView(textRef, { once: true });
-  const [activeIndustry, setActiveIndustry] = useState<"dental" | "services">("dental");
 
   // Track scroll through the hero container
   const { scrollYProgress } = useScroll({
@@ -135,32 +134,6 @@ export default function HeroSection() {
             animate={inView ? "show" : "hidden"}
             className="flex flex-col items-center"
           >
-            {/* Segmented Industry Switcher (desktop only) */}
-            <motion.div variants={itemVariants} className="mb-5 hidden md:block">
-              <div className="inline-flex items-center gap-1.5 p-1 bg-white/90 rounded-full border border-neutral-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.04)] backdrop-blur-md">
-                <button
-                  onClick={() => setActiveIndustry("dental")}
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 ${
-                    activeIndustry === "dental"
-                      ? "bg-neutral-900 text-white shadow-sm"
-                      : "text-neutral-500 hover:text-neutral-900"
-                  }`}
-                >
-                  Dental Clinics
-                </button>
-                <button
-                  onClick={() => setActiveIndustry("services")}
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 ${
-                    activeIndustry === "services"
-                      ? "bg-neutral-900 text-white shadow-sm"
-                      : "text-neutral-500 hover:text-neutral-900"
-                  }`}
-                >
-                  Service Businesses
-                </button>
-              </div>
-            </motion.div>
-
             {/* Main Headline */}
             <motion.h1
               variants={itemVariants}
@@ -178,9 +151,7 @@ export default function HeroSection() {
               variants={itemVariants}
               className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-xl text-neutral-600 max-w-md sm:max-w-2xl leading-relaxed font-light px-3 sm:px-0"
             >
-              {activeIndustry === "dental"
-                ? "AI voice agents, appointment booking automations, and modern websites that help dental practices capture patients and eliminate phone tag."
-                : "AI voice agents, intelligent automations, and modern websites that help service businesses capture leads and scale operations seamlessly."}
+              AI voice agents, intelligent automations, and modern websites that help clinics and service businesses capture leads, book appointments, and scale operations seamlessly.
             </motion.p>
 
             {/* CTAs with balanced mobile spacing */}
