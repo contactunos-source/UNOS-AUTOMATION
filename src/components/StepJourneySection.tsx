@@ -190,7 +190,29 @@ export default function StepJourneySection() {
                 </div>
               </div>
             </div>
+
+            {/* Subtle top glow line on hover */}
+            <div className="absolute inset-x-12 top-0 h-[2px] bg-gradient-to-r from-transparent via-orange-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
           </motion.div>
+        </div>
+
+        {/* Inter-step pipeline connector (Step 1 -> Step 2) */}
+        <div className="flex flex-col items-center justify-center -mt-12 -mb-12 lg:-mt-16 lg:-mb-16 relative z-20 pointer-events-none" aria-hidden="true">
+          <div className="w-[2px] h-12 lg:h-14 bg-gradient-to-b from-neutral-300 via-orange-400 to-neutral-300 relative overflow-hidden">
+            <div
+              className="absolute inset-x-0 w-full h-5 bg-orange-500 rounded-full shadow-[0_0_8px_#f97316]"
+              style={{ animation: "conduitFlow 2.4s linear infinite" }}
+            />
+          </div>
+          <div className="my-1">
+            <ConduitCoupler active={true} />
+          </div>
+          <div className="w-[2px] h-12 lg:h-14 bg-gradient-to-b from-neutral-300 via-orange-400 to-neutral-300 relative overflow-hidden">
+            <div
+              className="absolute inset-x-0 w-full h-5 bg-orange-500 rounded-full shadow-[0_0_8px_#f97316]"
+              style={{ animation: "conduitFlow 2.4s linear infinite", animationDelay: "-1.2s" }}
+            />
+          </div>
         </div>
 
         {/* ─── STEP 2 (Reference Video Frame 006 Layout) ─── */}
@@ -255,7 +277,29 @@ export default function StepJourneySection() {
                 </div>
               </div>
             </div>
+
+            {/* Subtle top glow line on hover */}
+            <div className="absolute inset-x-12 top-0 h-[2px] bg-gradient-to-r from-transparent via-orange-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
           </motion.div>
+        </div>
+
+        {/* Inter-step pipeline connector (Step 2 -> Step 3) */}
+        <div className="flex flex-col items-center justify-center -mt-12 -mb-12 lg:-mt-16 lg:-mb-16 relative z-20 pointer-events-none" aria-hidden="true">
+          <div className="w-[2px] h-12 lg:h-14 bg-gradient-to-b from-neutral-300 via-orange-400 to-neutral-300 relative overflow-hidden">
+            <div
+              className="absolute inset-x-0 w-full h-5 bg-orange-500 rounded-full shadow-[0_0_8px_#f97316]"
+              style={{ animation: "conduitFlow 2.4s linear infinite" }}
+            />
+          </div>
+          <div className="my-1">
+            <ConduitCoupler active={true} />
+          </div>
+          <div className="w-[2px] h-12 lg:h-14 bg-gradient-to-b from-neutral-300 via-orange-400 to-neutral-300 relative overflow-hidden">
+            <div
+              className="absolute inset-x-0 w-full h-5 bg-orange-500 rounded-full shadow-[0_0_8px_#f97316]"
+              style={{ animation: "conduitFlow 2.4s linear infinite", animationDelay: "-1.2s" }}
+            />
+          </div>
         </div>
 
         {/* ─── STEP 3 (Reference Video Frame 008 Layout) ─── */}
@@ -333,6 +377,9 @@ export default function StepJourneySection() {
                 </div>
               </div>
             </div>
+
+            {/* Subtle top glow line on hover */}
+            <div className="absolute inset-x-12 top-0 h-[2px] bg-gradient-to-r from-transparent via-orange-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
           </motion.div>
         </div>
       </div>
