@@ -26,6 +26,60 @@ function ConduitCoupler({ active = false }: { active?: boolean }) {
   );
 }
 
+// Conduit Side Wire with animated glowing orange pulses on both sides
+function ConduitSideWire({
+  side,
+  delay = "0s",
+  duration = "4s",
+}: {
+  side: "left" | "right";
+  delay?: string;
+  duration?: string;
+}) {
+  const isLeft = side === "left";
+  // Left wire curves towards right (towards card: x=48); Right wire curves towards left (towards card: x=0)
+  const pathD = isLeft
+    ? "M 24 0 L 24 60 C 24 100, 48 100, 48 140 L 48 240 C 48 280, 24 280, 24 360"
+    : "M 24 0 L 24 60 C 24 100, 0 100, 0 140 L 0 240 C 0 280, 24 280, 24 360";
+
+  return (
+    <div
+      className={`hidden md:block absolute ${
+        isLeft ? "-left-8 lg:-left-12" : "-right-8 lg:-right-12"
+      } top-0 bottom-0 w-8 lg:w-12 pointer-events-none select-none z-10`}
+      aria-hidden="true"
+    >
+      <svg
+        className="w-full h-full overflow-visible"
+        viewBox="0 0 48 360"
+        fill="none"
+        preserveAspectRatio="none"
+      >
+        {/* Base silver track */}
+        <path
+          d={pathD}
+          stroke="#e5e7eb"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        {/* Luminous glowing orange pulse */}
+        <path
+          d={pathD}
+          stroke="#f97316"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeDasharray="16 180"
+          style={{
+            animation: `conduitFlow ${duration} linear infinite`,
+            animationDelay: delay,
+            filter: "drop-shadow(0 0 4px rgba(249, 115, 22, 0.7))",
+          }}
+        />
+      </svg>
+    </div>
+  );
+}
+
 export default function StepJourneySection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -66,25 +120,9 @@ export default function StepJourneySection() {
 
         {/* ─── STEP 1 (Reference Video Frame 004 Layout) ─── */}
         <div className="relative mb-20 lg:mb-28">
-          {/* Conduit Wire Trace Left */}
-          <div className="hidden lg:block absolute -left-12 top-0 bottom-0 w-12 pointer-events-none" aria-hidden="true">
-            <svg className="w-full h-full" viewBox="0 0 48 360" fill="none" preserveAspectRatio="none">
-              <path
-                d="M 24 0 L 24 60 C 24 100, 48 100, 48 140 L 48 240 C 48 280, 24 280, 24 360"
-                stroke="#e5e7eb"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              />
-              <path
-                d="M 24 0 L 24 60 C 24 100, 48 100, 48 140 L 48 240 C 48 280, 24 280, 24 360"
-                stroke="#f97316"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeDasharray="16 180"
-                style={{ animation: "conduitFlow 4s linear infinite" }}
-              />
-            </svg>
-          </div>
+          {/* Conduit Wires on Both Sides */}
+          <ConduitSideWire side="left" delay="0s" duration="4s" />
+          <ConduitSideWire side="right" delay="-2s" duration="4s" />
 
           <motion.div
             variants={cardVariants}
@@ -157,6 +195,9 @@ export default function StepJourneySection() {
 
         {/* ─── STEP 2 (Reference Video Frame 006 Layout) ─── */}
         <div className="relative mb-20 lg:mb-28">
+          {/* Conduit Wires on Both Sides */}
+          <ConduitSideWire side="left" delay="-1.3s" duration="4s" />
+          <ConduitSideWire side="right" delay="-3.3s" duration="4s" />
           <motion.div
             variants={cardVariants}
             initial="hidden"
@@ -219,6 +260,9 @@ export default function StepJourneySection() {
 
         {/* ─── STEP 3 (Reference Video Frame 008 Layout) ─── */}
         <div className="relative">
+          {/* Conduit Wires on Both Sides */}
+          <ConduitSideWire side="left" delay="-2.6s" duration="4s" />
+          <ConduitSideWire side="right" delay="-0.6s" duration="4s" />
           <motion.div
             variants={cardVariants}
             initial="hidden"
