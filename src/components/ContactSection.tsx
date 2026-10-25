@@ -163,68 +163,48 @@ export default function ContactSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
-          {/* Left Column: Direct WhatsApp Connection */}
+          {/* Left Column: Direct Communication */}
           <motion.aside
             initial={{ opacity: 0, x: -20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-6"
           >
-            <div className="bg-white rounded-3xl border border-neutral-200/80 p-8 shadow-sm space-y-6">
-              <div>
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold mb-3">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  Fastest Response
-                </span>
-                <h3 className="text-xl font-bold text-neutral-900 leading-snug">
-                  Direct WhatsApp Chat
-                </h3>
-                <p className="text-sm text-neutral-600 mt-2 leading-relaxed">
-                  Message UNOS AUTOMATIONS directly to ask questions, explore pricing, or request a customized live demo.
-                </p>
-              </div>
-
-              {/* Primary WhatsApp Button */}
-              <a
-                href={siteConfig.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2.5 w-full px-6 py-4 bg-[#25D366] text-white text-sm font-semibold rounded-2xl hover:bg-[#20ba59] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 shadow-lg shadow-[#25D366]/25 group"
-              >
-                <WhatsAppIcon className="w-5 h-5 flex-shrink-0" />
-                <span>Chat on WhatsApp</span>
-              </a>
-
-              <div className="pt-2 border-t border-neutral-100 space-y-2">
-                <p className="text-xs text-neutral-500 flex items-center gap-2">
-                  <span className="text-emerald-500 font-bold">✓</span> Direct developer & automation specialist
-                </p>
-                <p className="text-xs text-neutral-500 flex items-center gap-2">
-                  <span className="text-emerald-500 font-bold">✓</span> Typically replies within 1–2 hours
-                </p>
-                <p className="text-xs text-neutral-500 flex items-center gap-2">
-                  <span className="text-emerald-500 font-bold">✓</span> Verified business WhatsApp
-                </p>
-              </div>
-            </div>
-
             {/* Email Support Card */}
-            <div className="bg-white rounded-3xl border border-neutral-200/80 p-6 shadow-sm space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+            <div className="bg-white rounded-3xl border border-neutral-200/80 p-8 shadow-sm space-y-4">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-orange-700 text-xs font-semibold">
+                Direct Communication
+              </span>
+              <h3 className="text-xl font-bold text-neutral-900 leading-snug">
                 Direct Email Inquiries
+              </h3>
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                Send RFPs, detailed briefs, or custom automation requirements directly to our engineering team.
               </p>
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="flex items-center gap-2.5 text-sm font-semibold text-neutral-900 hover:text-orange-600 transition-colors group"
-              >
-                <svg className="w-4 h-4 text-orange-500 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span>{siteConfig.email}</span>
-              </a>
-              <p className="text-xs text-neutral-500 leading-relaxed">
-                Send RFPs, detailed briefs, or custom automation requirements.
-              </p>
+              <div className="pt-2">
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="inline-flex items-center gap-2.5 text-sm font-semibold text-neutral-900 hover:text-orange-600 transition-colors group"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 group-hover:bg-orange-100 transition-colors">
+                    <svg className="w-4 h-4 text-orange-500 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <span>{siteConfig.email}</span>
+                </a>
+              </div>
+              <div className="pt-4 border-t border-neutral-100 space-y-2 text-xs text-neutral-500">
+                <p className="flex items-center gap-2">
+                  <span className="text-orange-500 font-bold">✓</span> Direct developer & automation specialist
+                </p>
+                <p className="flex items-center gap-2">
+                  <span className="text-orange-500 font-bold">✓</span> Typically replies within 24 hours
+                </p>
+                <p className="flex items-center gap-2">
+                  <span className="text-orange-500 font-bold">✓</span> Confidential project evaluation
+                </p>
+              </div>
             </div>
           </motion.aside>
 
