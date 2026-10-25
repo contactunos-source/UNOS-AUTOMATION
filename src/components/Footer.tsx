@@ -17,12 +17,12 @@ export default function Footer() {
           {/* Brand column */}
           <div className="space-y-4 max-w-sm">
             <div className="flex items-center gap-3.5">
-              <div className="relative h-11 w-auto flex items-center justify-center px-2.5 py-1.5 rounded-xl bg-white/[0.08] border border-white/10 shadow-sm backdrop-blur-sm">
+              <div className="relative h-8 w-auto flex items-center justify-center px-2 py-1 rounded-lg bg-white/[0.08] border border-white/10 shadow-sm backdrop-blur-sm">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/logo-light.png"
                   alt="UNOS AUTOMATIONS logo"
-                  className="h-8 w-auto object-contain drop-shadow-[0_2px_8px_rgba(255,255,255,0.2)]"
+                  className="h-5.5 w-auto object-contain drop-shadow-[0_2px_8px_rgba(255,255,255,0.2)]"
                 />
               </div>
               <span className="text-lg font-bold tracking-tight text-white flex items-center gap-1.5">

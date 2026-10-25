@@ -59,12 +59,12 @@ export default function Navbar() {
               className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded-lg group"
               aria-label="UNOS AUTOMATIONS — go to homepage"
             >
-              <div className="relative h-9 w-auto flex items-center justify-center">
+              <div className="relative h-6 w-auto flex items-center justify-center">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/logo.png"
                   alt="UNOS AUTOMATIONS logo"
-                  className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  className="h-6 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
               <span className="text-base font-bold tracking-tight text-neutral-900 group-hover:text-neutral-700 transition-colors">
