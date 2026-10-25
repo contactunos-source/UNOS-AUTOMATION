@@ -34,30 +34,25 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* ─── Central Hero Typography & CTAs (Exact Reference Composition) ─── */}
-      <div className="relative z-30 max-w-4xl mx-auto px-6 text-center flex flex-col items-center my-auto py-8 sm:py-12">
-        {/* Main Headline styled in exact reference hierarchy: soft grey lead + bold black finisher */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] tracking-tight max-w-2xl leading-[1.18]">
+      {/* ─── Central Hero Typography & CTAs (Shifted Upward, Balanced Two Lines, No Gray Text) ─── */}
+      <div className="relative z-30 max-w-4xl mx-auto px-6 text-center flex flex-col items-center my-auto -translate-y-4 sm:-translate-y-6 py-6 sm:py-8">
+        {/* Main Headline arranged across two clean lines */}
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight max-w-2xl leading-[1.16]">
           <span className="block text-neutral-500 font-light">
             Make Your Business
           </span>
-          <span className="block text-neutral-900 font-bold mt-1">
+          <span className="block text-neutral-900 font-bold mt-1.5">
             Work Smarter.
           </span>
         </h1>
 
-        {/* Supporting Copy */}
-        <p className="mt-4 text-xs sm:text-sm md:text-base text-neutral-500 max-w-md sm:max-w-lg leading-relaxed font-light">
-          From concept to execution, we give you the voice AI, connected workflows, and modern web platforms to transform your business operations.
-        </p>
-
-        {/* CTAs styled matching reference pill aesthetics */}
-        <div className="mt-7 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3.5 w-full max-w-[280px] sm:max-w-none mx-auto pointer-events-auto">
+        {/* CTAs moved downward with generous spacing */}
+        <div className="mt-12 sm:mt-16 md:mt-20 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full max-w-[280px] sm:max-w-none mx-auto pointer-events-auto">
           <a
             href={siteConfig.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-3 bg-neutral-900 text-white text-xs sm:text-sm font-medium rounded-full hover:bg-neutral-800 transition-all shadow-lg shadow-neutral-900/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-900 hover:scale-[1.02] active:scale-[0.98]"
+            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 sm:px-8 py-3.5 bg-neutral-900 text-white text-xs sm:text-sm font-medium rounded-full hover:bg-neutral-800 transition-all shadow-lg shadow-neutral-900/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-900 hover:scale-[1.02] active:scale-[0.98]"
           >
             <WhatsAppIcon className="w-4 h-4 text-[#25D366] transition-transform duration-200 group-hover:scale-110" />
             <span>Chat on WhatsApp</span>
@@ -69,7 +64,7 @@ export default function HeroSection() {
               e.preventDefault();
               document.getElementById("journey")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3 border border-neutral-300 bg-white/90 text-neutral-800 text-xs sm:text-sm font-medium rounded-full hover:bg-white hover:border-neutral-400 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-400 shadow-xs hover:scale-[1.01] active:scale-[0.98] backdrop-blur-sm"
+            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 sm:px-8 py-3.5 border border-neutral-300 bg-white/90 text-neutral-800 text-xs sm:text-sm font-medium rounded-full hover:bg-white hover:border-neutral-400 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-400 shadow-xs hover:scale-[1.01] active:scale-[0.98] backdrop-blur-sm"
           >
             Explore How It Works
           </a>
