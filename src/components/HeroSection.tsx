@@ -24,8 +24,8 @@ export default function HeroSection() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/hero-banner-realistic.jpg"
-          alt="Realistic robotic hand on left and realistic human hand on right reaching toward each other"
+          src="/images/hero-halftone-hands.jpg"
+          alt="Robotic hand and human hand reaching toward each other in elegant halftone stipple dot pattern"
           className="w-full h-full object-cover object-center select-none pointer-events-none"
           loading="eager"
         />
