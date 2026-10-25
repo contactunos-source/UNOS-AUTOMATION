@@ -17,11 +17,14 @@ export default function HeroSection() {
       id="home"
       className="relative w-full min-h-[92svh] sm:min-h-[94vh] lg:min-h-screen bg-white flex flex-col justify-between overflow-hidden select-none"
     >
-      {/* ─── Desktop Background Visual (lg+ screens: 100% unchanged) ─── */}
+      {/* ─── Desktop Background Visual (lg+ screens) ─── */}
       <div
         aria-hidden="true"
         className="hidden lg:flex absolute inset-0 pointer-events-none items-center justify-center overflow-hidden z-10"
       >
+        {/* Luminous touchpoint glow in center of desktop hero */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-44 bg-gradient-to-r from-orange-400/20 via-amber-300/25 to-blue-400/20 rounded-full blur-3xl pointer-events-none -z-1" />
+
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/hero-banner-realistic.jpg"
@@ -31,22 +34,22 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* ─── Mobile Subtle Ambient Background Lighting ─── */}
+      {/* ─── Subtle Ambient Background Lighting (All devices) ─── */}
       <div
         aria-hidden="true"
-        className="lg:hidden absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-80 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-100/70 via-white to-transparent pointer-events-none z-0"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-80 sm:h-96 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-100/70 via-white to-transparent pointer-events-none z-0"
       />
 
-      {/* ─── Top: Heading Section ─── */}
-      <div className="relative z-30 pt-16 sm:pt-20 lg:pt-32 px-5 sm:px-6 text-center max-w-4xl mx-auto w-full">
-        {/* Mobile Badge: introduces next-gen AI tech */}
-        <div className="lg:hidden inline-flex items-center gap-2 px-3 py-1 mb-2.5 rounded-full bg-neutral-100/90 border border-neutral-200/80 text-[11px] font-medium text-neutral-700 shadow-2xs backdrop-blur-sm">
+      {/* ─── Top: Heading Section (All devices) ─── */}
+      <div className="relative z-30 pt-16 sm:pt-20 lg:pt-24 xl:pt-28 px-5 sm:px-6 text-center max-w-4xl mx-auto w-full">
+        {/* Next-Gen Pill Badge: introduces business automation */}
+        <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 mb-2.5 sm:mb-3.5 rounded-full bg-neutral-100/90 border border-neutral-200/80 text-[11px] sm:text-xs font-medium text-neutral-700 shadow-2xs backdrop-blur-sm">
           <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
           <span>Next-Gen Business Automation</span>
         </div>
 
         {/* Main Heading */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight max-w-2xl mx-auto leading-[1.14]">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[58px] tracking-tight max-w-2xl mx-auto leading-[1.14]">
           <span className="block text-neutral-500 font-light">
             Make Your Business
           </span>
@@ -55,13 +58,13 @@ export default function HeroSection() {
           </span>
         </h1>
 
-        {/* Mobile Subtitle: gives context and eliminates empty dead space */}
-        <p className="lg:hidden mt-2.5 text-xs sm:text-sm text-neutral-600 max-w-xs sm:max-w-md mx-auto leading-relaxed">
+        {/* Subtitle: gives context and eliminates empty dead space across all screens */}
+        <p className="mt-2.5 sm:mt-3.5 text-xs sm:text-sm md:text-base text-neutral-600 max-w-xs sm:max-w-md md:max-w-lg mx-auto leading-relaxed">
           AI Voice Agents & Autonomous Workflows engineered to scale your operations 24/7.
         </p>
       </div>
 
-      {/* ─── Mobile Hands Illustration: prominent, complete fingers, luminous aura ─── */}
+      {/* ─── Mobile Hands Illustration (< lg): prominent, complete fingers, luminous aura ─── */}
       <div
         aria-hidden="true"
         className="lg:hidden relative z-20 w-full my-auto py-2 sm:py-3 flex items-center justify-center select-none pointer-events-none"
@@ -78,8 +81,8 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* ─── Bottom: CTAs & Trust Badges ─── */}
-      <div className="relative z-30 pb-6 sm:pb-10 lg:pb-20 px-6 text-center max-w-4xl mx-auto w-full pointer-events-auto">
+      {/* ─── Bottom: CTAs & Trust Badges (All devices) ─── */}
+      <div className="relative z-30 pb-6 sm:pb-8 lg:pb-12 xl:pb-14 px-6 text-center max-w-4xl mx-auto w-full pointer-events-auto">
         {/* Primary CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-[290px] sm:max-w-none mx-auto">
           <a
@@ -104,24 +107,24 @@ export default function HeroSection() {
           </a>
         </div>
 
-        {/* Mobile Micro Trust Row: fills bottom white space with credibility */}
-        <div className="lg:hidden mt-4 pt-3 border-t border-neutral-100 flex items-center justify-center gap-3 sm:gap-4 text-[11px] text-neutral-500">
-          <span className="inline-flex items-center gap-1.5 font-medium">
-            <svg className="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+        {/* Micro Trust Row: credibility and completeness on all devices */}
+        <div className="mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-neutral-100/90 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-[11px] sm:text-xs text-neutral-500 font-medium">
+          <span className="inline-flex items-center gap-1.5">
+            <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
             24/7 Voice Agents
           </span>
           <span className="text-neutral-300">•</span>
-          <span className="inline-flex items-center gap-1.5 font-medium">
-            <svg className="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+          <span className="inline-flex items-center gap-1.5">
+            <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
             Smart Workflows
           </span>
           <span className="text-neutral-300">•</span>
-          <span className="inline-flex items-center gap-1.5 font-medium">
-            <svg className="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+          <span className="inline-flex items-center gap-1.5">
+            <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
             Zero Downtime
