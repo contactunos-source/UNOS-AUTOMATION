@@ -17,47 +17,47 @@ export default function HeroSection() {
       id="home"
       className="relative w-full min-h-[90svh] sm:min-h-[92vh] lg:min-h-screen bg-white flex flex-col justify-center lg:justify-between overflow-hidden select-none"
     >
-      {/* ─── Desktop Background Visual (lg+ screens: 100% preserved) ─── */}
+      {/* ─── Desktop Background Visual (lg+ screens: exact realistic image from reference) ─── */}
       <div
         aria-hidden="true"
         className="hidden lg:flex absolute inset-0 pointer-events-none items-center justify-center overflow-hidden z-10"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/hero-halftone-hands.jpg"
-          alt="Robotic hand and human hand reaching toward each other in elegant halftone stipple dot pattern"
+          src="/images/hero-banner-realistic.jpg"
+          alt="Realistic robotic hand on left and realistic human hand on right reaching toward each other"
           className="w-full h-full object-cover object-center select-none pointer-events-none"
           loading="eager"
         />
       </div>
 
-      {/* ─── Top: Heading positioned cleanly above the hands (closer on mobile, unchanged on desktop) ─── */}
+      {/* ─── Top: Heading positioned cleanly above the hands ─── */}
       <div className="relative z-30 pt-16 sm:pt-20 lg:pt-32 pb-1 sm:pb-2 lg:pb-0 px-5 sm:px-6 text-center max-w-4xl mx-auto w-full">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight max-w-2xl mx-auto leading-[1.15]">
-          <span className="block text-neutral-700 font-medium sm:font-medium tracking-tight">
+          <span className="block text-neutral-500 font-light">
             Make Your Business
           </span>
-          <span className="block text-neutral-950 font-extrabold sm:font-bold mt-1 tracking-tight">
+          <span className="block text-neutral-900 font-bold mt-1">
             Work Smarter.
           </span>
         </h1>
       </div>
 
-      {/* ─── Mobile & Tablet Illustration (< lg): sits comfortably below tagline, complete fingers visible ─── */}
+      {/* ─── Mobile & Tablet Illustration (< lg): realistic hands with complete fingers, no cropping ─── */}
       <div
         aria-hidden="true"
         className="lg:hidden relative z-20 w-full px-3 sm:px-6 my-2 sm:my-3 flex items-center justify-center select-none pointer-events-none"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/hero-halftone-hands-mobile.jpg"
-          alt="Robotic hand on left and human hand on right reaching toward each other in elegant halftone stipple pattern"
-          className="w-full max-w-[460px] h-auto object-contain select-none pointer-events-none mx-auto"
+          src="/images/hero-banner-realistic-mobile.jpg"
+          alt="Realistic robotic hand on left and realistic human hand on right reaching toward each other"
+          className="w-full max-w-[480px] h-auto object-contain select-none pointer-events-none mx-auto"
           loading="eager"
         />
       </div>
 
-      {/* ─── Bottom: CTAs positioned below hands with comfortable space (no finger overlap) ─── */}
+      {/* ─── Bottom: CTAs positioned with comfortable spacing below the hands ─── */}
       <div className="relative z-30 pt-2 sm:pt-4 lg:pt-0 pb-6 sm:pb-10 lg:pb-20 px-6 text-center max-w-4xl mx-auto w-full pointer-events-auto">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full max-w-[280px] sm:max-w-none mx-auto">
           <a
