@@ -154,16 +154,16 @@ export default function HeroSection() {
               AI voice agents, intelligent automations, and modern websites that help clinics and service businesses capture leads, book appointments, and scale operations seamlessly.
             </motion.p>
 
-            {/* CTAs with balanced mobile spacing */}
+            {/* CTAs with balanced mobile spacing and centered laptop alignment */}
             <motion.div
               variants={itemVariants}
-              className="mt-12 sm:mt-10 md:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-3.5 items-center z-40 pointer-events-auto w-full max-w-[280px] sm:max-w-none mx-auto"
+              className="mt-24 sm:mt-16 md:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 z-40 pointer-events-auto w-full max-w-[280px] sm:max-w-none mx-auto"
             >
               <a
                 href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-3.5 bg-neutral-900 text-white text-sm font-semibold rounded-full hover:bg-neutral-800 transition-all shadow-xl shadow-neutral-900/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-900 hover:scale-[1.02] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 sm:px-8 py-3.5 bg-neutral-900 text-white text-sm font-semibold rounded-full hover:bg-neutral-800 transition-all shadow-xl shadow-neutral-900/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-900 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <WhatsAppIcon className="w-4 h-4 text-[#25D366] transition-transform duration-200 group-hover:scale-110" />
                 <span>Chat on WhatsApp</span>
@@ -175,7 +175,7 @@ export default function HeroSection() {
                   e.preventDefault();
                   document.getElementById("journey")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 border border-neutral-300 bg-white/90 text-neutral-800 text-sm font-semibold rounded-full hover:bg-white hover:border-neutral-400 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-400 shadow-xs hover:scale-[1.01] active:scale-[0.98] backdrop-blur-sm"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 sm:px-8 py-3.5 border border-neutral-300 bg-white/90 text-neutral-800 text-sm font-semibold rounded-full hover:bg-white hover:border-neutral-400 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-400 shadow-xs hover:scale-[1.01] active:scale-[0.98] backdrop-blur-sm"
               >
                 Explore How It Works
               </a>
