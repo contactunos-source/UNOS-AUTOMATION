@@ -15,47 +15,49 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-[92vh] lg:min-h-screen bg-white flex flex-col justify-between overflow-hidden select-none"
+      className="relative w-full min-h-[92vh] lg:min-h-screen bg-[#F7F7F7] flex flex-col justify-between overflow-hidden select-none"
     >
       {/* Top spacer for navbar */}
       <div className="h-16 lg:h-20 w-full shrink-0" />
 
-      {/* ─── Static Visual Background: Pure White with Realistic Hands Reaching Toward Each Other ─── */}
+      {/* ─── Static Visual Background: Exact Typographic Reference Hands ─── */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-10"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/hero-banner.jpg"
-          alt="Human and AI Robotic hands reaching toward each other"
-          className="w-full h-full object-cover sm:object-contain lg:object-cover object-center max-w-[2200px] mx-auto select-none pointer-events-none"
+          src="/images/hero-reference-clean.png"
+          alt="UNOS Automations hands"
+          className="w-full h-full object-cover md:object-contain object-center max-w-[1920px] mx-auto select-none pointer-events-none"
           loading="eager"
         />
       </div>
 
-      {/* ─── Central Hero Typography & CTAs (Reference Composition) ─── */}
-      <div className="relative z-30 max-w-4xl mx-auto px-6 text-center flex flex-col items-center my-auto py-10 lg:py-16">
-        {/* Main Headline */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-900 leading-[1.12] max-w-3xl">
-          Make Your Business{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 relative inline-block">
+      {/* ─── Central Hero Typography & CTAs (Exact Reference Composition) ─── */}
+      <div className="relative z-30 max-w-4xl mx-auto px-6 text-center flex flex-col items-center my-auto py-8 sm:py-12">
+        {/* Main Headline styled in exact reference hierarchy: soft grey lead + bold black finisher */}
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] tracking-tight max-w-2xl leading-[1.18]">
+          <span className="block text-neutral-500 font-light">
+            Make Your Business
+          </span>
+          <span className="block text-neutral-900 font-bold mt-1">
             Work Smarter.
           </span>
         </h1>
 
         {/* Supporting Copy */}
-        <p className="mt-5 text-sm sm:text-base lg:text-lg text-neutral-600 max-w-xl leading-relaxed font-light">
-          AI voice agents, intelligent automations, and modern websites that help clinics and service businesses capture leads, book appointments, and scale operations seamlessly.
+        <p className="mt-4 text-xs sm:text-sm md:text-base text-neutral-500 max-w-md sm:max-w-lg leading-relaxed font-light">
+          From concept to execution, we give you the voice AI, connected workflows, and modern web platforms to transform your business operations.
         </p>
 
-        {/* CTAs */}
-        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full max-w-[280px] sm:max-w-none mx-auto pointer-events-auto">
+        {/* CTAs styled matching reference pill aesthetics */}
+        <div className="mt-7 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3.5 w-full max-w-[280px] sm:max-w-none mx-auto pointer-events-auto">
           <a
             href={siteConfig.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-3.5 bg-neutral-900 text-white text-sm font-semibold rounded-full hover:bg-neutral-800 transition-all shadow-xl shadow-neutral-900/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-900 hover:scale-[1.02] active:scale-[0.98]"
+            className="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-3 bg-neutral-900 text-white text-xs sm:text-sm font-medium rounded-full hover:bg-neutral-800 transition-all shadow-lg shadow-neutral-900/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-900 hover:scale-[1.02] active:scale-[0.98]"
           >
             <WhatsAppIcon className="w-4 h-4 text-[#25D366] transition-transform duration-200 group-hover:scale-110" />
             <span>Chat on WhatsApp</span>
@@ -67,7 +69,7 @@ export default function HeroSection() {
               e.preventDefault();
               document.getElementById("journey")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 border border-neutral-300 bg-white/90 text-neutral-800 text-sm font-semibold rounded-full hover:bg-white hover:border-neutral-400 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-400 shadow-xs hover:scale-[1.01] active:scale-[0.98] backdrop-blur-sm"
+            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3 border border-neutral-300 bg-white/90 text-neutral-800 text-xs sm:text-sm font-medium rounded-full hover:bg-white hover:border-neutral-400 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-400 shadow-xs hover:scale-[1.01] active:scale-[0.98] backdrop-blur-sm"
           >
             Explore How It Works
           </a>
@@ -75,10 +77,10 @@ export default function HeroSection() {
       </div>
 
       {/* ─── Bottom Reference Bar ─── */}
-      <div className="relative z-30 pb-6 px-8 max-w-7xl mx-auto w-full hidden md:flex items-center justify-between text-xs text-neutral-400 font-mono tracking-tight select-none pointer-events-auto">
+      <div className="relative z-30 pb-7 px-8 max-w-7xl mx-auto w-full flex items-center justify-between text-[11px] sm:text-xs text-neutral-400 font-mono tracking-tight select-none">
         <span>The journey begins in stillness.</span>
-        <span className="text-center text-neutral-400/80">
-          Autonomous Voice Agents · Intelligent Business Workflows
+        <span className="hidden md:inline text-center text-neutral-400/80">
+          Autonomous Voice Agents · Intelligent Business Workflows · High-Performance Web
         </span>
         <button
           onClick={() => document.getElementById("journey")?.scrollIntoView({ behavior: "smooth" })}
