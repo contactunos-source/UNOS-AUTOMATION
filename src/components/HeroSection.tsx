@@ -15,12 +15,12 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-[92vh] lg:min-h-screen bg-white flex flex-col justify-between overflow-hidden select-none"
+      className="relative w-full min-h-[90svh] sm:min-h-[92vh] lg:min-h-screen bg-white flex flex-col justify-between overflow-hidden select-none"
     >
-      {/* ─── Static Visual: Realistic Robotic Hand on Left & Realistic Human Hand on Right ─── */}
+      {/* ─── Desktop Background Visual (lg+ screens: 100% preserved) ─── */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-10"
+        className="hidden lg:flex absolute inset-0 pointer-events-none items-center justify-center overflow-hidden z-10"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -31,20 +31,34 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* ─── Top: Heading positioned in the open white space above the hands ─── */}
-      <div className="relative z-30 pt-24 sm:pt-28 md:pt-32 px-6 text-center max-w-4xl mx-auto w-full">
+      {/* ─── Top: Heading positioned cleanly above the hands ─── */}
+      <div className="relative z-30 pt-20 sm:pt-24 md:pt-28 lg:pt-32 px-5 sm:px-6 text-center max-w-4xl mx-auto w-full">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] tracking-tight max-w-2xl mx-auto leading-[1.15]">
-          <span className="block text-neutral-500 font-light">
+          <span className="block text-neutral-700 font-medium sm:font-medium tracking-tight">
             Make Your Business
           </span>
-          <span className="block text-neutral-900 font-bold mt-1">
+          <span className="block text-neutral-950 font-extrabold sm:font-bold mt-1 tracking-tight">
             Work Smarter.
           </span>
         </h1>
       </div>
 
-      {/* ─── Bottom: CTAs positioned lower down in the open white space below the hands ─── */}
-      <div className="relative z-30 pb-14 sm:pb-16 md:pb-20 px-6 text-center max-w-4xl mx-auto w-full pointer-events-auto">
+      {/* ─── Mobile & Tablet Illustration (< lg): complete hands with all fingers visible, no cropping ─── */}
+      <div
+        aria-hidden="true"
+        className="lg:hidden relative z-20 w-full px-4 sm:px-6 my-auto py-3 sm:py-4 flex items-center justify-center select-none pointer-events-none"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/hero-halftone-hands-mobile.jpg"
+          alt="Robotic hand on left and human hand on right reaching toward each other in elegant halftone stipple pattern"
+          className="w-full max-w-[500px] h-auto object-contain select-none pointer-events-none mx-auto"
+          loading="eager"
+        />
+      </div>
+
+      {/* ─── Bottom: CTAs positioned with comfortable spacing below the illustration ─── */}
+      <div className="relative z-30 pb-10 sm:pb-14 md:pb-16 lg:pb-20 px-6 text-center max-w-4xl mx-auto w-full pointer-events-auto">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full max-w-[280px] sm:max-w-none mx-auto">
           <a
             href={siteConfig.whatsappUrl}
