@@ -64,10 +64,6 @@ export default function HeroSection() {
   const orbScale = useTransform(smooth, [0, 0.85], [0.9, 1.2]);
   const orbOpacity = useTransform(smooth, [0, 0.85], [0.55, 0.95]);
 
-  // ─── Connection Status Badge ───
-  const badgeOpacity = useTransform(smooth, [0.65, 0.85], [0, 1]);
-  const badgeY = useTransform(smooth, [0.65, 0.85], [16, 0]);
-
   // Scroll indicator fade-out
   const scrollIndicatorOpacity = useTransform(smooth, [0, 0.25], [1, 0]);
 
@@ -212,20 +208,6 @@ export default function HeroSection() {
               >
                 Explore How It Works
               </a>
-            </motion.div>
-
-            {/* Convergence Status Badge (desktop only) */}
-            <motion.div
-              style={{ opacity: badgeOpacity, y: badgeY }}
-              className="mt-7 hidden md:inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/95 border border-orange-200 shadow-md backdrop-blur-md pointer-events-none"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500" />
-              </span>
-              <span className="text-[11px] font-mono font-bold text-orange-700 tracking-wider uppercase">
-                Human Intent Connected to AI Automation
-              </span>
             </motion.div>
           </motion.div>
         </div>
