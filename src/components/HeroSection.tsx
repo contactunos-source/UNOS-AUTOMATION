@@ -23,28 +23,36 @@ export default function HeroSection() {
     { text: "Neural Intent Core", duration: 7.5, delay: 6.2 },
   ];
 
-  // Reference-exact voice equalizer waveform pattern (from uploaded reference image)
+  // Reference-exact voice equalizer waveform pattern (continuous across full right side)
+  const baseWavePattern = [
+    { h: 46, w: 3.5 },
+    { h: 64, w: 3.5 },
+    { h: 36, w: 3.5 },
+    { h: 10, w: 3.5 },
+    { h: 10, w: 3.5 },
+    { h: 44, w: 3.5 },
+    { h: 74, w: 4 },
+    { h: 38, w: 3.5 },
+    { h: 18, w: 3.5 },
+    { h: 22, w: 3.5 },
+    { h: 42, w: 3.5 },
+    { h: 58, w: 3.5 },
+    { h: 78, w: 4 },
+    { h: 68, w: 3.5 },
+    { h: 54, w: 3.5 },
+    { h: 44, w: 3.5 },
+    { h: 60, w: 3.5 },
+    { h: 72, w: 4 },
+    { h: 52, w: 3.5 },
+    { h: 36, w: 3.5 },
+  ];
+
+  // Repeat sequence across the full laptop width (~80 bars)
   const refWaveBars = [
-    { h: 48, w: 4, isDot: false },
-    { h: 64, w: 4, isDot: false },
-    { h: 36, w: 4, isDot: false },
-    { h: 10, w: 4, isDot: true },
-    { h: 10, w: 4, isDot: true },
-    { h: 44, w: 4, isDot: false },
-    { h: 72, w: 4.5, isDot: false },
-    { h: 38, w: 4, isDot: false },
-    { h: 18, w: 4, isDot: false },
-    { h: 22, w: 4, isDot: false },
-    { h: 42, w: 4, isDot: false },
-    { h: 58, w: 4, isDot: false },
-    { h: 76, w: 4.5, isDot: false },
-    { h: 68, w: 4, isDot: false },
-    { h: 54, w: 4, isDot: false },
-    { h: 44, w: 4, isDot: false },
-    { h: 60, w: 4, isDot: false },
-    { h: 70, w: 4.5, isDot: false },
-    { h: 52, w: 4, isDot: false },
-    { h: 36, w: 4, isDot: false },
+    ...baseWavePattern,
+    ...baseWavePattern,
+    ...baseWavePattern,
+    ...baseWavePattern,
   ];
 
   return (
@@ -240,12 +248,12 @@ export default function HeroSection() {
           />
 
           {/* ══════════════════════════════════════════════════════════════
-              RIGHT SIDE: LARGE, PROMINENT OUTGOING VOICE WAVEFORM
-              Spans 50vw all the way to the far-right edge of the screen!
+              RIGHT SIDE: CONTINUOUS BLACK-AND-WHITE VOICE WAVEFORM
+              Borderless, free-flowing, extending all the way to right edge!
              ══════════════════════════════════════════════════════════════ */}
           <div
             aria-hidden="true"
-            className="absolute top-[23.2%] -translate-y-1/2 left-[71.5%] w-[48vw] min-w-[260px] max-w-[850px] h-36 sm:h-44 lg:h-52 pointer-events-none flex items-center justify-start overflow-visible"
+            className="absolute top-[23.2%] -translate-y-1/2 left-[71.5%] w-[48vw] min-w-[260px] max-w-[850px] h-36 sm:h-44 lg:h-52 pointer-events-none flex items-center justify-start overflow-hidden"
           >
             {/* Right Ear Broadcast Beacon (Locked to right ear connection) */}
             <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1.5 flex items-center justify-center z-30">
@@ -253,114 +261,12 @@ export default function HeroSection() {
               <span className="absolute w-5 h-5 rounded-full bg-cyan-400 opacity-60 animate-ping" />
             </div>
 
-            {/* The Large, High-Amplitude Audio-Frequency Waveform (Continuous to Right Edge) */}
-            <svg
-              className="absolute inset-0 w-full h-full overflow-visible"
-              viewBox="0 0 1000 200"
-              preserveAspectRatio="none"
-              fill="none"
-            >
-              <defs>
-                {/* Voice audio frequency gradient matching reference and brand */}
-                <linearGradient id="largeVoiceWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#06b6d4" stopOpacity="1" />
-                  <stop offset="25%" stopColor="#0ea5e9" stopOpacity="0.95" />
-                  <stop offset="55%" stopColor="#f97316" stopOpacity="0.9" />
-                  <stop offset="85%" stopColor="#059669" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#0284c7" stopOpacity="0.7" />
-                </linearGradient>
-
-                <linearGradient id="harmonicSubWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.6" />
-                  <stop offset="50%" stopColor="#94a3b8" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#cbd5e1" stopOpacity="0.2" />
-                </linearGradient>
-
-                <filter id="voiceWaveGlow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="2.5" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
-
-              {/* Horizontal Reference Centerline */}
-              <line
-                x1="0"
-                y1="100"
-                x2="1000"
-                y2="100"
-                stroke="#e2e8f0"
-                strokeWidth="1.25"
-                strokeDasharray="4 6"
-              />
-
-              {/* Secondary Harmonic Voice Waveform */}
-              <motion.path
-                d="M 0,100 Q 50,45 100,100 T 200,100 T 300,55 T 400,145 T 500,60 T 600,140 T 700,65 T 800,135 T 900,80 L 1000,100"
-                stroke="url(#harmonicSubWaveGrad)"
-                strokeWidth="2"
-                strokeLinecap="round"
-                vectorEffect="non-scaling-stroke"
-                animate={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        d: [
-                          "M 0,100 Q 50,45 100,100 T 200,100 T 300,55 T 400,145 T 500,60 T 600,140 T 700,65 T 800,135 T 900,80 L 1000,100",
-                          "M 0,100 Q 50,155 100,100 T 200,100 T 300,145 T 400,55 T 500,140 T 600,60 T 700,135 T 800,65 T 900,120 L 1000,100",
-                          "M 0,100 Q 50,45 100,100 T 200,100 T 300,55 T 400,145 T 500,60 T 600,140 T 700,65 T 800,135 T 900,80 L 1000,100",
-                        ],
-                      }
-                }
-                transition={{
-                  duration: 4.8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-
-              {/* PRIMARY PROMINENT VOICE FREQUENCY WAVEFORM (TALL, BOLD, CONTINUOUS TO EDGE) */}
-              <motion.path
-                d="M 0,100 C 40,20 80,180 120,100 C 160,25 200,175 240,100 C 280,15 320,185 360,100 C 400,30 440,170 480,100 C 520,20 560,180 600,100 C 640,35 680,165 720,100 C 760,25 800,175 840,100 C 880,45 920,155 960,100 L 1000,100"
-                stroke="url(#largeVoiceWaveGrad)"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-                filter="url(#voiceWaveGlow)"
-                vectorEffect="non-scaling-stroke"
-                animate={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        d: [
-                          "M 0,100 C 40,20 80,180 120,100 C 160,25 200,175 240,100 C 280,15 320,185 360,100 C 400,30 440,170 480,100 C 520,20 560,180 600,100 C 640,35 680,165 720,100 C 760,25 800,175 840,100 C 880,45 920,155 960,100 L 1000,100",
-                          "M 0,100 C 40,175 80,25 120,100 C 160,180 200,20 240,100 C 280,170 320,30 360,100 C 400,185 440,15 480,100 C 520,175 560,25 600,100 C 640,165 680,35 720,100 C 760,180 800,20 840,100 C 880,155 920,45 960,100 L 1000,100",
-                          "M 0,100 C 40,30 80,170 120,100 C 160,15 200,185 240,100 C 280,35 320,165 360,100 C 400,20 440,180 480,100 C 520,30 560,170 600,100 C 640,25 680,175 720,100 C 760,35 800,165 840,100 C 880,40 920,160 960,100 L 1000,100",
-                          "M 0,100 C 40,20 80,180 120,100 C 160,25 200,175 240,100 C 280,15 320,185 360,100 C 400,30 440,170 480,100 C 520,20 560,180 600,100 C 640,35 680,165 720,100 C 760,25 800,175 840,100 C 880,45 920,155 960,100 L 1000,100",
-                        ],
-                      }
-                }
-                transition={{
-                  duration: 3.8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-
-              {/* Rhythmic Speech Harmonic Nodes */}
-              <circle cx="160" cy="25" r="3.5" fill="#0ea5e9" className="opacity-90" />
-              <circle cx="280" cy="15" r="4" fill="#06b6d4" className="opacity-95" />
-              <circle cx="440" cy="170" r="3.5" fill="#f97316" className="opacity-90" />
-              <circle cx="560" cy="180" r="4" fill="#059669" className="opacity-90" />
-              <circle cx="720" cy="100" r="3" fill="#0284c7" className="opacity-80" />
-              <circle cx="840" cy="100" r="3" fill="#0ea5e9" className="opacity-80" />
-            </svg>
-
-            {/* ── Audio Equalizer Bars Capsule (Direct Reference Image Replication) ── */}
-            <div className="absolute left-8 sm:left-14 top-1/2 -translate-y-1/2 z-20 flex items-center gap-1 sm:gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/95 border-2 border-neutral-300 shadow-md backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-1" />
+            {/* Continuous Black-and-White Audio Frequency Waveform Bars (Borderless, Clean, Full Width) */}
+            <div className="pl-4 sm:pl-6 flex items-center gap-1 sm:gap-1.5 w-full h-full overflow-hidden flex-nowrap">
               {refWaveBars.map((bar, i) => (
                 <motion.span
                   key={`eq-${i}`}
-                  className="rounded-full bg-neutral-900"
+                  className="rounded-full bg-neutral-900 shrink-0"
                   style={{
                     width: `${bar.w}px`,
                     height: `${bar.h}px`,
@@ -370,7 +276,7 @@ export default function HeroSection() {
                       ? {}
                       : {
                           height: [
-                            `${Math.max(6, bar.h * 0.4)}px`,
+                            `${Math.max(6, bar.h * 0.35)}px`,
                             `${bar.h}px`,
                             `${Math.max(6, bar.h * 0.7)}px`,
                             `${bar.h}px`,
@@ -382,38 +288,11 @@ export default function HeroSection() {
                     repeat: Infinity,
                     repeatType: "reverse",
                     ease: "easeInOut",
-                    delay: i * 0.04,
+                    delay: i * 0.03,
                   }}
                 />
               ))}
-              <span className="text-[10px] sm:text-xs font-mono font-semibold text-neutral-800 ml-1.5 uppercase tracking-wider hidden sm:inline">
-                Voice Output • 24kHz
-              </span>
             </div>
-
-            {/* Outgoing Spoken Action Toast: Travels outward from right ear toward screen edge */}
-            {!shouldReduceMotion && (
-              <motion.div
-                className="absolute left-0 top-1/2 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border-2 border-emerald-500/80 text-neutral-900 shadow-md backdrop-blur-sm z-20"
-                initial={{ x: "0%", opacity: 0 }}
-                animate={{
-                  x: ["10%", "340%"],
-                  y: ["-50%", "-85%", "-25%", "-75%", "-50%"],
-                  opacity: [0, 1, 1, 0.95, 0],
-                }}
-                transition={{
-                  duration: 6.8,
-                  delay: 1.5,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span className="text-xs sm:text-sm font-semibold tracking-wide font-sans text-neutral-900 whitespace-nowrap">
-                  “Confirmed for tomorrow 3 PM”
-                </span>
-              </motion.div>
-            )}
           </div>
 
         </div>
