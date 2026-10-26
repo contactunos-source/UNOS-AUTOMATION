@@ -104,11 +104,12 @@ export default function HeroSection() {
 
           {/* ══════════════════════════════════════════════════════════════
               LEFT SIDE: CONTINUOUS BLUE LINE + INCOMING WORDS TO LEFT EAR
-              Strictly clipped at left ear so words NEVER pass into or through robot!
+              Directly aligned with robot's LEFT EAR (not the eye).
+              Words disappear precisely at the left ear beacon.
              ══════════════════════════════════════════════════════════════ */}
           <div
             aria-hidden="true"
-            className="absolute top-[22.8%] -translate-y-1/2 right-[73.6%] w-[48vw] max-w-[850px] h-36 sm:h-44 lg:h-52 pointer-events-none flex items-center justify-end overflow-hidden z-20"
+            className="absolute top-[22%] -translate-y-1/2 right-[94.5%] w-[46vw] max-w-[850px] h-36 sm:h-44 lg:h-52 pointer-events-none flex items-center justify-end overflow-hidden z-20"
           >
             {/* The Clearly Visible Blue Transmission Waveform Line */}
             <svg
@@ -181,7 +182,7 @@ export default function HeroSection() {
               />
             </svg>
 
-            {/* Animated English Words: Disappear at robot's left ear via strict boundary clipping */}
+            {/* Animated English Words: Travel directly to robot's left ear and disappear */}
             {!shouldReduceMotion ? (
               incomingWords.map((item, idx) => (
                 <motion.div
@@ -208,7 +209,7 @@ export default function HeroSection() {
               ))
             ) : (
               // Static Fallback for Reduced Motion
-              <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-1 items-end z-20">
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-1 items-end z-20">
                 <span className="px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-white border border-sky-400 text-neutral-800 shadow-xs">
                   AI Voice Intelligence
                 </span>
@@ -219,12 +220,12 @@ export default function HeroSection() {
             )}
           </div>
 
-          {/* Left Ear Intake Beacon (Locked to left ear connection) */}
+          {/* Left Ear Intake Beacon (Positioned directly on robot's actual left ear) */}
           <div
             aria-hidden="true"
-            className="absolute top-[22.8%] -translate-y-1/2 right-[73.6%] translate-x-1 sm:translate-x-1.5 flex items-center justify-center z-30 pointer-events-none"
+            className="absolute top-[22%] -translate-y-1/2 right-[94.5%] translate-x-1 flex items-center justify-center z-30 pointer-events-none"
           >
-            <span className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4]" />
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-cyan-400 shadow-[0_0_10px_#06b6d4]" />
             <span className="absolute w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-cyan-400 opacity-60 animate-ping" />
           </div>
 
@@ -250,25 +251,26 @@ export default function HeroSection() {
             className="w-36 sm:w-48 lg:w-56 h-3 sm:h-4 bg-neutral-900/12 rounded-full blur-md -mt-1 sm:-mt-2 pointer-events-none"
           />
 
-          {/* Right Ear Broadcast Beacon (Locked to right ear connection) */}
+          {/* Right Ear Broadcast Beacon (Positioned directly on robot's actual right ear) */}
           <div
             aria-hidden="true"
-            className="absolute top-[23.2%] -translate-y-1/2 left-[71.5%] -translate-x-1 sm:-translate-x-1.5 flex items-center justify-center z-30 pointer-events-none"
+            className="absolute top-[22%] -translate-y-1/2 left-[94.5%] -translate-x-1 flex items-center justify-center z-30 pointer-events-none"
           >
-            <span className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4]" />
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-cyan-400 shadow-[0_0_10px_#06b6d4]" />
             <span className="absolute w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-cyan-400 opacity-60 animate-ping" />
           </div>
 
           {/* ══════════════════════════════════════════════════════════════
               RIGHT SIDE: CONTINUOUS BLACK-AND-WHITE VOICE WAVEFORM
-              Completely independent, borderless, strictly isolated to right side!
+              Starts directly from robot's RIGHT EAR (not near the eye).
+              Extends outward to the far-right edge.
              ══════════════════════════════════════════════════════════════ */}
           <div
             aria-hidden="true"
-            className="absolute top-[23.2%] -translate-y-1/2 left-[71.5%] w-[48vw] max-w-[850px] h-36 sm:h-44 lg:h-52 pointer-events-none flex items-center justify-start overflow-hidden z-20"
+            className="absolute top-[22%] -translate-y-1/2 left-[94.5%] w-[46vw] max-w-[850px] h-36 sm:h-44 lg:h-52 pointer-events-none flex items-center justify-start overflow-hidden z-20"
           >
             {/* Continuous Black-and-White Audio Frequency Waveform Bars */}
-            <div className="pl-2 sm:pl-6 flex items-center gap-1 sm:gap-1.5 w-full h-full overflow-hidden flex-nowrap">
+            <div className="pl-1 sm:pl-2 flex items-center gap-1 sm:gap-1.5 w-full h-full overflow-hidden flex-nowrap">
               {refWaveBars.map((bar, i) => (
                 <motion.span
                   key={`eq-${i}`}
