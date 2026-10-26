@@ -11,10 +11,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "UNOS AUTOMATIONS — AI Voice Agents & Business Automation",
+  title: "UNOS AM — AI Voice Agents & Business Automation",
   description:
     "AI-powered voice agents, intelligent automations, and modern websites that help businesses capture more opportunities and spend less time on repetitive work.",
   keywords: [
+    "UNOS AM",
     "UNOS AUTOMATIONS",
     "AI voice agent",
     "business automation",
@@ -24,20 +25,20 @@ export const metadata: Metadata = {
     "WhatsApp lead automation",
     "AI receptionist",
   ],
-  authors: [{ name: "UNOS AUTOMATIONS" }],
-  creator: "UNOS AUTOMATIONS",
+  authors: [{ name: "UNOS AM" }],
+  creator: "UNOS AM",
   openGraph: {
-    title: "UNOS AUTOMATIONS — AI Voice Agents & Business Automation",
+    title: "UNOS AM — AI Voice Agents & Business Automation",
     description:
       "AI-powered voice agents, intelligent automations, and modern websites that help businesses capture more opportunities and spend less time on repetitive work.",
     url: "https://unosautomations.com",
-    siteName: "UNOS AUTOMATIONS",
+    siteName: "UNOS AM",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "UNOS AUTOMATIONS — AI Voice Agents & Business Automation",
+    title: "UNOS AM — AI Voice Agents & Business Automation",
     description:
       "AI-powered voice agents and business automation for modern service businesses.",
   },

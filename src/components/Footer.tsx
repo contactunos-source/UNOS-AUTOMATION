@@ -24,14 +24,14 @@ export default function Footer() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/logo-light.png"
-                  alt="UNOS AUTOMATIONS logo"
+                  alt="UNOS AM logo"
                   className="h-5.5 w-auto object-contain drop-shadow-[0_2px_8px_rgba(255,255,255,0.2)]"
                 />
               </div>
               <span className="text-lg font-bold tracking-tight text-white flex items-center gap-1.5">
                 <span>UNOS</span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-500 to-amber-300">
-                  AUTOMATIONS
+                  AM
                 </span>
               </span>
             </div>
@@ -67,7 +67,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
-          <p>© {year} UNOS AUTOMATIONS. All rights reserved.</p>
+          <p>© {year} UNOS AM. All rights reserved.</p>
           <p>AI Voice Agents · Intelligent Workflows · Web Development</p>
         </div>
       </div>

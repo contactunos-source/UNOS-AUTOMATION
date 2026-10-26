@@ -1,7 +1,7 @@
-// Central configuration for UNOS AUTOMATIONS
+// Central configuration for UNOS AM
 
 export const siteConfig = {
-  name: "UNOS AUTOMATIONS",
+  name: "UNOS AM",
   tagline: "AI Voice Agents & Business Automation",
   description:
     "AI-powered voice agents, intelligent automations, and modern websites that help businesses capture more opportunities and eliminate repetitive work.",
@@ -12,7 +12,7 @@ export const siteConfig = {
   // WhatsApp Configuration
   // Country Code: 91 (India) + Mobile: 9182078320 -> 919182078320
   whatsappNumber: "919182078320",
-  whatsappDefaultMessage: "Hi UNOS AUTOMATIONS, I'm interested in your AI automation services.",
+  whatsappDefaultMessage: "Hi UNOS AM, I'm interested in your AI automation services.",
   
   get whatsappUrl(): string {
     return `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(this.whatsappDefaultMessage)}`;
