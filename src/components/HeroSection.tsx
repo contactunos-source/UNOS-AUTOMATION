@@ -99,6 +99,9 @@ export default function HeroSection() {
             href="#journey"
             onClick={(e) => {
               e.preventDefault();
+              if (typeof window !== "undefined") {
+                window.dispatchEvent(new CustomEvent("unos-nav-transition", { detail: { href: "#journey" } }));
+              }
               document.getElementById("journey")?.scrollIntoView({ behavior: "smooth" });
             }}
             className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 sm:px-8 py-3.5 border border-neutral-300 bg-white/95 text-neutral-800 text-xs sm:text-sm font-medium rounded-full hover:bg-white hover:border-neutral-400 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-400 shadow-xs hover:scale-[1.01] active:scale-[0.98] backdrop-blur-sm"

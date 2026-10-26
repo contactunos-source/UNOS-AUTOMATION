@@ -5,6 +5,9 @@ import { siteConfig } from "@/lib/config";
 const year = new Date().getFullYear();
 
 function scrollTo(href: string) {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent("unos-nav-transition", { detail: { href } }));
+  }
   const id = href.replace("#", "");
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 }

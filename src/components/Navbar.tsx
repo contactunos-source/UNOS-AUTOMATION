@@ -31,7 +31,12 @@ export default function Navbar() {
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
+    // Dispatch navigation transition event for top progress bar and destination section reveal
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("unos-nav-transition", { detail: { href } }));
+    }
     const id = href.replace("#", "");
+    setActiveSection(id);
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -77,16 +82,23 @@ export default function Navbar() {
               {siteConfig.navLinks.map((link) => {
                 const isActive = activeSection === link.href.replace("#", "");
                 return (
-                  <li key={link.href}>
+                  <li key={link.href} className="relative">
                     <button
                       onClick={() => handleNavClick(link.href)}
                       className={cn(
-                        "px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500",
+                        "relative px-3.5 py-2 text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500",
                         isActive
-                          ? "text-orange-600 bg-orange-50/70"
-                          : "text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/70"
+                          ? "text-orange-600 font-semibold"
+                          : "text-neutral-600 hover:text-neutral-900"
                       )}
                     >
+                      {isActive && (
+                        <motion.span
+                          layoutId="activeNavPill"
+                          transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                          className="absolute inset-0 bg-orange-50/90 rounded-lg -z-10 border border-orange-200/60 shadow-2xs"
+                        />
+                      )}
                       {link.label}
                     </button>
                   </li>
