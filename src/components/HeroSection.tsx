@@ -104,11 +104,11 @@ export default function HeroSection() {
 
           {/* ══════════════════════════════════════════════════════════════
               LEFT SIDE: CONTINUOUS BLUE LINE + INCOMING WORDS TO LEFT EAR
-              Spans 50vw all the way to the far-left edge of the screen!
+              Strictly clipped at left ear so words NEVER pass into or through robot!
              ══════════════════════════════════════════════════════════════ */}
           <div
             aria-hidden="true"
-            className="absolute top-[22.8%] -translate-y-1/2 right-[73.6%] w-[48vw] min-w-[260px] max-w-[850px] h-36 sm:h-44 lg:h-52 pointer-events-none flex items-center justify-end overflow-visible"
+            className="absolute top-[22.8%] -translate-y-1/2 right-[73.6%] w-[48vw] max-w-[850px] h-36 sm:h-44 lg:h-52 pointer-events-none flex items-center justify-end overflow-hidden z-20"
           >
             {/* The Clearly Visible Blue Transmission Waveform Line */}
             <svg
@@ -181,23 +181,17 @@ export default function HeroSection() {
               />
             </svg>
 
-            {/* Left Ear Intake Beacon (Firmly locked to ear connection) */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1.5 flex items-center justify-center z-30">
-              <span className="w-3.5 h-3.5 rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4]" />
-              <span className="absolute w-5 h-5 rounded-full bg-cyan-400 opacity-60 animate-ping" />
-            </div>
-
-            {/* Animated English Words: Travel directly along the blue wave into left ear */}
+            {/* Animated English Words: Disappear at robot's left ear via strict boundary clipping */}
             {!shouldReduceMotion ? (
               incomingWords.map((item, idx) => (
                 <motion.div
                   key={`word-${idx}`}
-                  className="absolute left-0 top-1/2 flex items-center gap-2 px-3 py-1 rounded-full bg-white/95 border-2 border-sky-400/80 text-neutral-800 shadow-md backdrop-blur-sm z-20"
+                  className="absolute left-0 top-1/2 flex items-center gap-1.5 sm:gap-2 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/95 border sm:border-2 border-sky-400/80 text-neutral-800 shadow-md backdrop-blur-sm z-20"
                   initial={{ x: "-100%", opacity: 0 }}
                   animate={{
                     x: ["-10%", "360%"],
                     y: ["-50%", "-85%", "-25%", "-75%", "-50%"],
-                    opacity: [0, 1, 1, 0.95, 0],
+                    opacity: [0, 1, 1, 0.85, 0],
                   }}
                   transition={{
                     duration: item.duration,
@@ -206,23 +200,32 @@ export default function HeroSection() {
                     ease: "linear",
                   }}
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse" />
-                  <span className="text-[11px] sm:text-xs md:text-sm font-semibold tracking-wide font-sans text-neutral-900 whitespace-nowrap">
+                  <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-sky-500 animate-pulse" />
+                  <span className="text-[10px] sm:text-xs md:text-sm font-semibold tracking-wide font-sans text-neutral-900 whitespace-nowrap">
                     {item.text}
                   </span>
                 </motion.div>
               ))
             ) : (
               // Static Fallback for Reduced Motion
-              <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col gap-1.5 items-end z-20">
-                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-sky-400 text-neutral-800 shadow-xs">
+              <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-1 items-end z-20">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-white border border-sky-400 text-neutral-800 shadow-xs">
                   AI Voice Intelligence
                 </span>
-                <span className="px-3 py-1 rounded-full text-[11px] font-semibold bg-white border border-sky-300 text-neutral-700 shadow-xs">
+                <span className="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[11px] font-semibold bg-white border border-sky-300 text-neutral-700 shadow-xs">
                   Autonomous Workflows
                 </span>
               </div>
             )}
+          </div>
+
+          {/* Left Ear Intake Beacon (Locked to left ear connection) */}
+          <div
+            aria-hidden="true"
+            className="absolute top-[22.8%] -translate-y-1/2 right-[73.6%] translate-x-1 sm:translate-x-1.5 flex items-center justify-center z-30 pointer-events-none"
+          >
+            <span className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4]" />
+            <span className="absolute w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-cyan-400 opacity-60 animate-ping" />
           </div>
 
           {/* ══════════════════════════════════════════════════════════════
@@ -247,22 +250,25 @@ export default function HeroSection() {
             className="w-36 sm:w-48 lg:w-56 h-3 sm:h-4 bg-neutral-900/12 rounded-full blur-md -mt-1 sm:-mt-2 pointer-events-none"
           />
 
+          {/* Right Ear Broadcast Beacon (Locked to right ear connection) */}
+          <div
+            aria-hidden="true"
+            className="absolute top-[23.2%] -translate-y-1/2 left-[71.5%] -translate-x-1 sm:-translate-x-1.5 flex items-center justify-center z-30 pointer-events-none"
+          >
+            <span className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4]" />
+            <span className="absolute w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-cyan-400 opacity-60 animate-ping" />
+          </div>
+
           {/* ══════════════════════════════════════════════════════════════
               RIGHT SIDE: CONTINUOUS BLACK-AND-WHITE VOICE WAVEFORM
-              Borderless, free-flowing, extending all the way to right edge!
+              Completely independent, borderless, strictly isolated to right side!
              ══════════════════════════════════════════════════════════════ */}
           <div
             aria-hidden="true"
-            className="absolute top-[23.2%] -translate-y-1/2 left-[71.5%] w-[48vw] min-w-[260px] max-w-[850px] h-36 sm:h-44 lg:h-52 pointer-events-none flex items-center justify-start overflow-hidden"
+            className="absolute top-[23.2%] -translate-y-1/2 left-[71.5%] w-[48vw] max-w-[850px] h-36 sm:h-44 lg:h-52 pointer-events-none flex items-center justify-start overflow-hidden z-20"
           >
-            {/* Right Ear Broadcast Beacon (Locked to right ear connection) */}
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1.5 flex items-center justify-center z-30">
-              <span className="w-3.5 h-3.5 rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4]" />
-              <span className="absolute w-5 h-5 rounded-full bg-cyan-400 opacity-60 animate-ping" />
-            </div>
-
-            {/* Continuous Black-and-White Audio Frequency Waveform Bars (Borderless, Clean, Full Width) */}
-            <div className="pl-4 sm:pl-6 flex items-center gap-1 sm:gap-1.5 w-full h-full overflow-hidden flex-nowrap">
+            {/* Continuous Black-and-White Audio Frequency Waveform Bars */}
+            <div className="pl-2 sm:pl-6 flex items-center gap-1 sm:gap-1.5 w-full h-full overflow-hidden flex-nowrap">
               {refWaveBars.map((bar, i) => (
                 <motion.span
                   key={`eq-${i}`}
