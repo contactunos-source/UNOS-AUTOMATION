@@ -1,7 +1,14 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { siteConfig } from "@/lib/config";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 
 // WhatsApp Icon
 function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
@@ -14,6 +21,70 @@ function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
 
 export default function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
+
+  // Mouse Tracking & Ultra-Smooth Spring Physics for Robot Character
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Awwwards-grade spring physics (smooth, natural, lifelike inertia)
+  const springConfig = { damping: 22, stiffness: 110, mass: 0.7 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  // 3D Head & Torso Rotation and Parallax
+  const rotateY = useTransform(smoothX, [-1, 1], [-14, 14]); // Turns head left / right
+  const rotateX = useTransform(smoothY, [-1, 1], [7, -7]); // Looks up / down naturally
+  const rotateZ = useTransform(smoothX, [-1, 1], [-2.8, 2.8]); // Organic body lean into the movement
+  const translateX = useTransform(smoothX, [-1, 1], [-15, 15]); // Subtle horizontal translation
+  const translateY = useTransform(smoothY, [-1, 1], [-8, 8]); // Subtle vertical translation
+
+  // Dynamic Contact Shadow beneath feet (reacts to body weight shift & tilt)
+  const shadowX = useTransform(smoothX, [-1, 1], [-8, 8]);
+  const shadowScaleX = useTransform(smoothX, [-1, 0, 1], [1.08, 1, 1.08]);
+  const shadowOpacity = useTransform(smoothY, [-1, 1], [0.10, 0.16]);
+
+  // Ambient Cyan Eye Aura Parallax (depth layering behind the character)
+  const glowX = useTransform(smoothX, [-1, 1], [-20, 20]);
+  const glowY = useTransform(smoothY, [-1, 1], [-16, 16]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const checkMobile = () => {
+      const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+      setIsMobile(isTouch || window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile, { passive: true });
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || isMobile || shouldReduceMotion) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const { innerWidth, innerHeight } = window;
+      const x = (e.clientX - innerWidth / 2) / (innerWidth / 2);
+      const y = (e.clientY - innerHeight / 2) / (innerHeight / 2);
+      mouseX.set(Math.max(-1, Math.min(1, x)));
+      mouseY.set(Math.max(-1, Math.min(1, y)));
+    };
+
+    const handleMouseLeave = () => {
+      mouseX.set(0);
+      mouseY.set(0);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [isMobile, shouldReduceMotion, mouseX, mouseY]);
 
   // Incoming English words (traveling along the blue line from far-left to left ear)
   const incomingWords = [
@@ -93,9 +164,14 @@ export default function HeroSection() {
       {/* ─── Center: AI Agent Character with Full-Width Ear-to-Ear Transmission Flow ─── */}
       <div className="relative z-10 w-full my-auto py-2 sm:py-4 flex items-center justify-center select-none overflow-visible">
         
-        {/* Ambient Cyan / Aqua Glow matching AI Agent Eyes */}
-        <div
+        {/* Ambient Cyan / Aqua Glow matching AI Agent Eyes with Parallax Depth */}
+        <motion.div
           aria-hidden="true"
+          style={
+            !isMobile && !shouldReduceMotion
+              ? { x: glowX, y: glowY }
+              : undefined
+          }
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-88 lg:w-[450px] h-72 sm:h-88 lg:h-[450px] bg-cyan-400/10 rounded-full blur-3xl pointer-events-none -z-10"
         />
 
@@ -221,24 +297,66 @@ export default function HeroSection() {
           </div>
 
           {/* ══════════════════════════════════════════════════════════════
-              CENTER: AI AGENT CHARACTER IMAGE
+              CENTER: AI AGENT CHARACTER WITH 3D MOUSE TRACKING & LEAN
              ══════════════════════════════════════════════════════════════ */}
-          <div className="relative flex items-center justify-center z-10">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <picture>
-              <source srcSet="/images/ai-agent.webp" type="image/webp" />
-              <img
-                src="/images/ai-agent.png"
-                alt="UNOS Autonomous AI Agent"
-                className="h-[230px] xs:h-[260px] sm:h-[310px] md:h-[350px] lg:h-[390px] xl:h-[410px] w-auto max-w-[85vw] object-contain drop-shadow-sm select-none"
-                loading="eager"
-              />
-            </picture>
-          </div>
+          <motion.div
+            style={
+              !isMobile && !shouldReduceMotion
+                ? {
+                    rotateY,
+                    rotateX,
+                    rotateZ,
+                    x: translateX,
+                    y: translateY,
+                    transformPerspective: 1200,
+                    transformOrigin: "50% 80%",
+                  }
+                : undefined
+            }
+            className="relative flex items-center justify-center z-10 hardware-accelerated pointer-events-none"
+          >
+            {/* Subtle Lifelike Ambient Breathing Floating Layer */}
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      y: [0, -5, 0],
+                    }
+              }
+              transition={{
+                duration: 4.4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="relative flex items-center justify-center"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <picture>
+                <source srcSet="/images/ai-agent.webp" type="image/webp" />
+                <img
+                  src="/images/ai-agent.png"
+                  alt="UNOS Autonomous AI Agent"
+                  className="h-[230px] xs:h-[260px] sm:h-[310px] md:h-[350px] lg:h-[390px] xl:h-[410px] w-auto max-w-[85vw] object-contain drop-shadow-sm select-none"
+                  loading="eager"
+                  draggable={false}
+                />
+              </picture>
+            </motion.div>
+          </motion.div>
 
-          {/* Soft Realistic Contact Shadow beneath robot feet */}
-          <div
+          {/* Soft Realistic Contact Shadow beneath robot feet with dynamic squash & shift */}
+          <motion.div
             aria-hidden="true"
+            style={
+              !isMobile && !shouldReduceMotion
+                ? {
+                    x: shadowX,
+                    scaleX: shadowScaleX,
+                    opacity: shadowOpacity,
+                  }
+                : undefined
+            }
             className="w-36 sm:w-48 lg:w-56 h-3 sm:h-4 bg-neutral-900/12 rounded-full blur-md -mt-1 sm:-mt-2 pointer-events-none"
           />
 
