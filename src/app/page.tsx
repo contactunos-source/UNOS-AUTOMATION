@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import CinematicExperienceSection from "@/components/CinematicExperienceSection";
 import StepJourneySection from "@/components/StepJourneySection";
 import ServicesSection from "@/components/ServicesSection";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -15,6 +16,10 @@ export default function Home() {
       <main>
         <SectionTransition targetId="home">
           <HeroSection />
+        </SectionTransition>
+
+        <SectionTransition targetId="ai-experience" delay={0.04}>
+          <CinematicExperienceSection />
         </SectionTransition>
 
         <SectionTransition targetId="journey" delay={0.04}>
