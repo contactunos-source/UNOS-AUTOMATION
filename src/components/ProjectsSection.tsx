@@ -5,66 +5,20 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-// Live Voice Agent Demo (Demo 1) - Real ElevenLabs ConvAI Integration
+// Live Voice Agent Demo (Demo 1) - Direct Clean Integration (No Floating Widget)
 function VoiceAgentLiveDemo() {
-  const widgetContainerRef = useRef<HTMLDivElement>(null);
-  const widgetRef = useRef<HTMLElement | null>(null);
-  const [isCalling, setIsCalling] = useState(false);
   const agentUrl = "https://elevenlabs.io/app/talk-to?agent_id=agent_8501m5rnha7zeegvx0d9knz4xf5t";
 
   useEffect(() => {
-    // 1. Load ElevenLabs widget embed script
-    const scriptId = "elevenlabs-convai-script";
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement("script");
-      script.id = scriptId;
-      script.src = "https://unpkg.com/@elevenlabs/convai-widget-embed";
-      script.async = true;
-      script.type = "text/javascript";
-      document.body.appendChild(script);
-    }
-
-    // 2. Mount custom widget element
-    if (widgetContainerRef.current && !widgetRef.current) {
-      widgetContainerRef.current.innerHTML = "";
-      const widget = document.createElement("elevenlabs-convai");
-      widget.setAttribute("agent-id", "agent_8501m5rnha7zeegvx0d9knz4xf5t");
-      widgetContainerRef.current.appendChild(widget);
-      widgetRef.current = widget;
-
-      const onStarted = () => setIsCalling(true);
-      const onEnded = () => setIsCalling(false);
-
-      widget.addEventListener("conversationStarted", onStarted);
-      widget.addEventListener("conversationEnded", onEnded);
-
-      return () => {
-        widget.removeEventListener("conversationStarted", onStarted);
-        widget.removeEventListener("conversationEnded", onEnded);
-      };
-    }
+    // Completely remove any floating ElevenLabs ConvAI widgets and scripts from the DOM
+    const script = document.getElementById("elevenlabs-convai-script");
+    if (script) script.remove();
+    const existingWidgets = document.querySelectorAll("elevenlabs-convai");
+    existingWidgets.forEach((w) => w.remove());
   }, []);
-
-  const handleStartConversation = async () => {
-    const widget = widgetRef.current as any;
-    if (widget && typeof widget.startConversation === "function") {
-      try {
-        await widget.startConversation();
-        setIsCalling(true);
-        return;
-      } catch (e) {
-        console.warn("Could not start inline session, opening direct URL:", e);
-      }
-    }
-    // Fallback to opening live agent URL directly
-    window.open(agentUrl, "_blank", "noopener,noreferrer");
-  };
 
   return (
     <div className="w-full max-w-md mx-auto bg-white rounded-2xl border border-neutral-200/90 shadow-xs p-6 sm:p-8 flex flex-col items-center text-center">
-      {/* Live ElevenLabs ConvAI Custom Element Container */}
-      <div ref={widgetContainerRef} className="my-1" />
-
       {/* Online Status Badge */}
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/70 text-emerald-700 text-xs font-semibold mb-5">
         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -91,15 +45,17 @@ function VoiceAgentLiveDemo() {
 
       {/* Direct Interactive Call & Live Demo Actions */}
       <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-3 mb-5">
-        <button
-          onClick={handleStartConversation}
+        <a
+          href={agentUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-neutral-950 hover:bg-neutral-800 text-white text-xs font-semibold shadow-sm transition-all hover:scale-[1.02] active:scale-95 cursor-pointer"
         >
           <svg className="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
             <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.44-5.15-3.75-6.59-6.59l1.97-1.57c.26-.26.35-.65.24-1.01A11.36 11.36 0 018.96 4.3a1 1 0 00-1-1H4.3a1 1 0 00-1 1c0 9.39 7.61 17 17 17a1 1 0 001-1v-3.66a1 1 0 00-.99-1.01l-.3-.25z" />
           </svg>
-          <span>{isCalling ? "Speaking with Agent..." : "Start Voice Call"}</span>
-        </button>
+          <span>Start Voice Call</span>
+        </a>
 
         <a
           href={agentUrl}
