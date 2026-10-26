@@ -220,15 +220,6 @@ export default function HeroSection() {
             )}
           </div>
 
-          {/* Left Ear Intake Beacon (Positioned directly on robot's actual left ear) */}
-          <div
-            aria-hidden="true"
-            className="absolute top-[22%] -translate-y-1/2 right-[94.5%] translate-x-1 flex items-center justify-center z-30 pointer-events-none"
-          >
-            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-cyan-400 shadow-[0_0_10px_#06b6d4]" />
-            <span className="absolute w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-cyan-400 opacity-60 animate-ping" />
-          </div>
-
           {/* ══════════════════════════════════════════════════════════════
               CENTER: AI AGENT CHARACTER IMAGE
              ══════════════════════════════════════════════════════════════ */}
@@ -250,15 +241,6 @@ export default function HeroSection() {
             aria-hidden="true"
             className="w-36 sm:w-48 lg:w-56 h-3 sm:h-4 bg-neutral-900/12 rounded-full blur-md -mt-1 sm:-mt-2 pointer-events-none"
           />
-
-          {/* Right Ear Broadcast Beacon (Positioned directly on robot's actual right ear) */}
-          <div
-            aria-hidden="true"
-            className="absolute top-[22%] -translate-y-1/2 left-[94.5%] -translate-x-1 flex items-center justify-center z-30 pointer-events-none"
-          >
-            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-cyan-400 shadow-[0_0_10px_#06b6d4]" />
-            <span className="absolute w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-cyan-400 opacity-60 animate-ping" />
-          </div>
 
           {/* ══════════════════════════════════════════════════════════════
               RIGHT SIDE: CONTINUOUS BLACK-AND-WHITE VOICE WAVEFORM
