@@ -5,25 +5,15 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-// Phone Mockup (Demo 1) with ElevenLabs Live AI Integration & Call Controls
-function DentalPhoneMockup() {
-  const [callState, setCallState] = useState<"incoming" | "in-call" | "ended">("incoming");
-  const [isMuted, setIsMuted] = useState(false);
-  const [callDuration, setCallDuration] = useState(0);
-  const [activeStep, setActiveStep] = useState(0);
+// Live Voice Agent Demo (Demo 1) - Real ElevenLabs ConvAI Integration
+function VoiceAgentLiveDemo() {
   const widgetContainerRef = useRef<HTMLDivElement>(null);
   const widgetRef = useRef<HTMLElement | null>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const [isCalling, setIsCalling] = useState(false);
+  const agentUrl = "https://elevenlabs.io/app/talk-to?agent_id=agent_8501m5rnha7zeegvx0d9knz4xf5t";
 
-  const steps = [
-    { title: "Caller Verified", detail: "David K. (Existing Patient)", time: "00:15" },
-    { title: "Intent Identified", detail: "Emergency Tooth Ache", time: "00:42" },
-    { title: "Slot Reserved", detail: "Thursday 10:30 AM (Dr. Miller)", time: "01:14" },
-  ];
-
-  // Initialize ElevenLabs ConvAI widget embed
   useEffect(() => {
-    // 1. Load ElevenLabs widget embed script if not already in document
+    // 1. Load ElevenLabs widget embed script
     const scriptId = "elevenlabs-convai-script";
     if (!document.getElementById(scriptId)) {
       const script = document.createElement("script");
@@ -34,7 +24,7 @@ function DentalPhoneMockup() {
       document.body.appendChild(script);
     }
 
-    // 2. Mount custom widget element hidden inside container
+    // 2. Mount custom widget element
     if (widgetContainerRef.current && !widgetRef.current) {
       widgetContainerRef.current.innerHTML = "";
       const widget = document.createElement("elevenlabs-convai");
@@ -42,14 +32,8 @@ function DentalPhoneMockup() {
       widgetContainerRef.current.appendChild(widget);
       widgetRef.current = widget;
 
-      // Listen for conversation events from widget
-      const onStarted = () => {
-        setCallState("in-call");
-      };
-
-      const onEnded = () => {
-        setCallState("ended");
-      };
+      const onStarted = () => setIsCalling(true);
+      const onEnded = () => setIsCalling(false);
 
       widget.addEventListener("conversationStarted", onStarted);
       widget.addEventListener("conversationEnded", onEnded);
@@ -61,273 +45,78 @@ function DentalPhoneMockup() {
     }
   }, []);
 
-  // Timer effect when in call
-  useEffect(() => {
-    if (callState === "in-call") {
-      timerRef.current = setInterval(() => {
-        setCallDuration((prev) => prev + 1);
-      }, 1000);
-    } else {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
-    }
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [callState]);
-
-  // Format seconds to mm:ss
-  const formatTime = (secs: number) => {
-    const m = Math.floor(secs / 60)
-      .toString()
-      .padStart(2, "0");
-    const s = (secs % 60).toString().padStart(2, "0");
-    return `${m}:${s}`;
-  };
-
-  // Answer / Start Call
-  const handleAnswerCall = async () => {
-    setCallState("in-call");
-    setCallDuration(0);
-    // Programmatically trigger ElevenLabs voice agent
+  const handleStartConversation = async () => {
     const widget = widgetRef.current as any;
     if (widget && typeof widget.startConversation === "function") {
       try {
         await widget.startConversation();
-      } catch (err) {
-        console.warn("ElevenLabs startConversation error:", err);
+        setIsCalling(true);
+        return;
+      } catch (e) {
+        console.warn("Could not start inline session, opening direct URL:", e);
       }
     }
-  };
-
-  // End Call
-  const handleEndCall = () => {
-    setCallState("ended");
-    const widget = widgetRef.current as any;
-    if (widget && typeof widget.endConversation === "function") {
-      try {
-        widget.endConversation();
-      } catch (err) {
-        console.warn("ElevenLabs endConversation error:", err);
-      }
-    }
-  };
-
-  // Decline Call
-  const handleDeclineCall = () => {
-    setCallState("ended");
-  };
-
-  // Toggle Mute
-  const handleToggleMute = () => {
-    setIsMuted((prev) => !prev);
+    // Fallback to opening live agent URL directly
+    window.open(agentUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
-    <div className="relative mx-auto" style={{ width: 272 }}>
-      {/* Hidden container for ElevenLabs ConvAI widget embed */}
-      <div ref={widgetContainerRef} className="hidden" aria-hidden="true" />
+    <div className="w-full max-w-md mx-auto bg-white rounded-2xl border border-neutral-200/90 shadow-xs p-6 sm:p-8 flex flex-col items-center text-center">
+      {/* Live ElevenLabs ConvAI Custom Element Container */}
+      <div ref={widgetContainerRef} className="my-1" />
 
-      {/* Main Realistic Phone Chassis */}
-      <div className="relative rounded-[46px] overflow-hidden shadow-2xl border-[7px] border-neutral-900 bg-[#0d111a] hardware-accelerated">
-        
-        {/* Dynamic Island Header */}
-        <div className="flex justify-center pt-3 pb-1">
-          <div className="w-28 h-7 rounded-full bg-black/90 flex items-center justify-center gap-2 border border-white/10 px-2.5">
-            <span
-              className={`w-1.5 h-1.5 rounded-full ${
-                callState === "in-call"
-                  ? "bg-emerald-400 animate-pulse"
-                  : callState === "incoming"
-                  ? "bg-amber-400 animate-ping"
-                  : "bg-neutral-500"
-              }`}
-            />
-            <span className="text-white text-[9.5px] font-medium tracking-tight">
-              {callState === "in-call"
-                ? `Active · ${formatTime(callDuration)}`
-                : callState === "incoming"
-                ? "Active Voice AI"
-                : "Call Ended"}
-            </span>
-          </div>
-        </div>
-
-        {/* Screen Content Area */}
-        <div
-          className="flex flex-col items-center px-4 pt-2 pb-5 text-center"
-          style={{ minHeight: 380, background: "linear-gradient(180deg,#141926,#0a0d14)" }}
-        >
-          {/* Clinic Avatar & Header */}
-          <div className="flex flex-col items-center gap-1.5 mt-1.5 mb-2.5">
-            <div className="relative">
-              <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-orange-500/35">
-                DC
-              </div>
-              {callState === "incoming" && (
-                <span className="absolute -inset-1 rounded-2xl border-2 border-orange-400/50 animate-ping pointer-events-none" />
-              )}
-            </div>
-
-            <p className="text-white text-sm font-semibold tracking-tight">Apex Dental Clinic</p>
-            <p className="text-emerald-400 text-[11px] font-medium">
-              {callState === "in-call" ? "AI Receptionist Speaking" : "AI Receptionist Live Demo"}
-            </p>
-          </div>
-
-          {/* Animated Voice Waveform Bars */}
-          <div className="flex items-center gap-1 h-6 my-1">
-            {[0.35, 0.7, 1, 0.55, 0.9, 0.45, 0.75].map((h, i) => (
-              <span
-                key={i}
-                className={`w-1 rounded-full transition-all duration-300 ${
-                  callState === "in-call" && !isMuted
-                    ? "bg-orange-400 animate-pulse"
-                    : callState === "incoming"
-                    ? "bg-orange-400/80"
-                    : "bg-neutral-600"
-                }`}
-                style={{
-                  height: callState === "in-call" && !isMuted ? `${Math.round(h * 22)}px` : "6px",
-                  animation:
-                    callState === "in-call" && !isMuted
-                      ? `wave-bar 0.7s ease-in-out ${i * 0.08}s infinite alternate`
-                      : "none",
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Contextual Real-Time Verification Cards (Matching Reference Image) */}
-          <div className="mt-2.5 space-y-2 w-full text-left">
-            {steps.map((st, i) => (
-              <div
-                key={i}
-                onClick={() => setActiveStep(i)}
-                className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
-                  activeStep === i
-                    ? "bg-white/15 border-orange-400/80 shadow-[0_0_12px_rgba(249,115,22,0.18)]"
-                    : "bg-white/5 border-white/10 hover:bg-white/10"
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-semibold text-white/95">{st.title}</span>
-                  <span className="text-[9px] font-mono font-medium text-orange-400">{st.time}</span>
-                </div>
-                <p className="text-[10px] text-white/70 mt-0.5">{st.detail}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* ══════════════════════════════════════════════════════════════
-              REALISTIC CALL CONTROLS (Answer, Decline, End Call, Mute)
-             ══════════════════════════════════════════════════════════════ */}
-          <div className="mt-4 pt-3 border-t border-white/10 w-full flex items-center justify-center gap-4">
-            {callState === "incoming" && (
-              <>
-                {/* Decline Button */}
-                <button
-                  onClick={handleDeclineCall}
-                  className="flex flex-col items-center gap-1 group focus:outline-none"
-                  aria-label="Decline Call"
-                >
-                  <div className="w-10 h-10 rounded-full bg-red-600/90 hover:bg-red-600 text-white flex items-center justify-center shadow-md shadow-red-600/30 transition-transform active:scale-95">
-                    {/* Phone hangup icon */}
-                    <svg className="w-4 h-4 rotate-[135deg]" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.44-5.15-3.75-6.59-6.59l1.97-1.57c.26-.26.35-.65.24-1.01A11.36 11.36 0 018.96 4.3a1 1 0 00-1-1H4.3a1 1 0 00-1 1c0 9.39 7.61 17 17 17a1 1 0 001-1v-3.66a1 1 0 00-.99-1.01l-.3-.25z" />
-                    </svg>
-                  </div>
-                  <span className="text-[9.5px] font-medium text-white/70">Decline</span>
-                </button>
-
-                {/* Answer Button */}
-                <button
-                  onClick={handleAnswerCall}
-                  className="flex flex-col items-center gap-1 group focus:outline-none"
-                  aria-label="Answer Call & Speak"
-                >
-                  <div className="w-11 h-11 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center shadow-lg shadow-emerald-500/40 transition-transform active:scale-95 animate-bounce">
-                    {/* Phone icon */}
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.44-5.15-3.75-6.59-6.59l1.97-1.57c.26-.26.35-.65.24-1.01A11.36 11.36 0 018.96 4.3a1 1 0 00-1-1H4.3a1 1 0 00-1 1c0 9.39 7.61 17 17 17a1 1 0 001-1v-3.66a1 1 0 00-.99-1.01l-.3-.25z" />
-                    </svg>
-                  </div>
-                  <span className="text-[9.5px] font-semibold text-emerald-400">Answer</span>
-                </button>
-              </>
-            )}
-
-            {callState === "in-call" && (
-              <>
-                {/* Mute Button */}
-                <button
-                  onClick={handleToggleMute}
-                  className={`flex flex-col items-center gap-1 group focus:outline-none`}
-                  aria-label={isMuted ? "Unmute Microphone" : "Mute Microphone"}
-                >
-                  <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all active:scale-95 ${
-                      isMuted
-                        ? "bg-amber-500/20 border-amber-400 text-amber-400"
-                        : "bg-white/10 hover:bg-white/15 border-white/20 text-white"
-                    }`}
-                  >
-                    {isMuted ? (
-                      /* Mic Off */
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                        <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                      </svg>
-                    ) : (
-                      /* Mic On */
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                      </svg>
-                    )}
-                  </div>
-                  <span className="text-[9.5px] font-medium text-white/70">{isMuted ? "Unmute" : "Mute"}</span>
-                </button>
-
-                {/* End Call Button */}
-                <button
-                  onClick={handleEndCall}
-                  className="flex flex-col items-center gap-1 group focus:outline-none"
-                  aria-label="End Call"
-                >
-                  <div className="w-10 h-10 rounded-full bg-red-600 hover:bg-red-500 text-white flex items-center justify-center shadow-lg shadow-red-600/40 transition-transform active:scale-95">
-                    {/* Hangup icon */}
-                    <svg className="w-4 h-4 rotate-[135deg]" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.44-5.15-3.75-6.59-6.59l1.97-1.57c.26-.26.35-.65.24-1.01A11.36 11.36 0 018.96 4.3a1 1 0 00-1-1H4.3a1 1 0 00-1 1c0 9.39 7.61 17 17 17a1 1 0 001-1v-3.66a1 1 0 00-.99-1.01l-.3-.25z" />
-                    </svg>
-                  </div>
-                  <span className="text-[9.5px] font-semibold text-red-400">End</span>
-                </button>
-              </>
-            )}
-
-            {callState === "ended" && (
-              <button
-                onClick={handleAnswerCall}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white text-[11px] font-semibold shadow-md transition-all active:scale-95"
-              >
-                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.44-5.15-3.75-6.59-6.59l1.97-1.57c.26-.26.35-.65.24-1.01A11.36 11.36 0 018.96 4.3a1 1 0 00-1-1H4.3a1 1 0 00-1 1c0 9.39 7.61 17 17 17a1 1 0 001-1v-3.66a1 1 0 00-.99-1.01l-.3-.25z" />
-                </svg>
-                <span>Call Clinic Again</span>
-              </button>
-            )}
-          </div>
-        </div>
+      {/* Online Status Badge */}
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/70 text-emerald-700 text-xs font-semibold mb-5">
+        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+        <span>Live Dental Voice Agent · Active</span>
       </div>
 
-      {/* Ambient Phone Backlight */}
-      <div
-        className="absolute inset-0 -z-10 blur-3xl opacity-25 rounded-[46px]"
-        style={{ background: "radial-gradient(circle,#f97316,transparent 70%)" }}
-        aria-hidden="true"
-      />
+      {/* Clean Minimal Voice Icon */}
+      <div className="w-14 h-14 rounded-2xl bg-neutral-900 text-white flex items-center justify-center mb-4 shadow-sm">
+        <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+          />
+        </svg>
+      </div>
+
+      <h4 className="text-xl font-bold text-neutral-900 tracking-tight mb-2">
+        Test the Live Voice Agent
+      </h4>
+      <p className="text-xs text-neutral-500 max-w-sm mb-6 leading-relaxed font-light">
+        Interact directly with the live dental clinic voice agent. Experience real-time speech synthesis, natural appointment booking, and immediate inquiry responses.
+      </p>
+
+      {/* Direct Interactive Call & Live Demo Actions */}
+      <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-3 mb-5">
+        <button
+          onClick={handleStartConversation}
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-neutral-950 hover:bg-neutral-800 text-white text-xs font-semibold shadow-sm transition-all hover:scale-[1.02] active:scale-95 cursor-pointer"
+        >
+          <svg className="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.44-5.15-3.75-6.59-6.59l1.97-1.57c.26-.26.35-.65.24-1.01A11.36 11.36 0 018.96 4.3a1 1 0 00-1-1H4.3a1 1 0 00-1 1c0 9.39 7.61 17 17 17a1 1 0 001-1v-3.66a1 1 0 00-.99-1.01l-.3-.25z" />
+          </svg>
+          <span>{isCalling ? "Speaking with Agent..." : "Start Voice Call"}</span>
+        </button>
+
+        <a
+          href={agentUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-6 py-3 rounded-full bg-white hover:bg-neutral-50 text-neutral-800 text-xs font-semibold border border-neutral-300 shadow-2xs transition-all hover:scale-[1.02] active:scale-95 cursor-pointer"
+        >
+          <span>Try Live Demo</span>
+          <span className="text-neutral-400 text-sm">↗</span>
+        </a>
+      </div>
+
+      {/* Clean Technical Specs */}
+      <div className="w-full pt-4 border-t border-neutral-100 flex items-center justify-between text-[11px] text-neutral-400">
+        <span className="font-mono">Agent ID: agent_8501...</span>
+        <span className="text-emerald-600 font-medium">Real-Time WebRTC</span>
+      </div>
     </div>
   );
 }
@@ -536,8 +325,8 @@ export default function ProjectsSection() {
                     </div>
                   </div>
 
-                  <div className="flex-1 w-full flex items-center justify-center min-h-[350px] bg-neutral-50/70 rounded-2xl p-6 border border-neutral-100">
-                    {demo.id === "voice-agent" && <DentalPhoneMockup />}
+                  <div className={`flex-1 w-full flex items-center justify-center min-h-[350px] rounded-2xl p-6 border ${demo.id === "voice-agent" ? "bg-white border-neutral-200/80" : "bg-neutral-50/70 border-neutral-100"}`}>
+                    {demo.id === "voice-agent" && <VoiceAgentLiveDemo />}
                     {demo.id === "lead-capture" && <WorkflowViz />}
                     {demo.id === "website" && <BrowserMockup />}
                   </div>
