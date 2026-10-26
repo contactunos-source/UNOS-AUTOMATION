@@ -119,24 +119,6 @@ export default function FaqSection() {
             );
           })}
         </div>
-
-        {/* Have more questions banner */}
-        <div className="mt-12 text-center p-6 rounded-2xl bg-white border border-neutral-200/80 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-left">
-            <p className="text-sm font-semibold text-neutral-900">Have a specific question about your tech stack?</p>
-            <p className="text-xs text-neutral-500 mt-0.5">Chat directly with the automation engineer behind UNOS.</p>
-          </div>
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="px-5 py-2.5 bg-neutral-900 text-white text-xs font-semibold rounded-full hover:bg-neutral-800 transition-colors shadow-sm flex-shrink-0"
-          >
-            Get In Touch →
-          </a>
-        </div>
       </div>
     </section>
   );
