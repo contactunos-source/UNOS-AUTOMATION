@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import SnowEffect from "@/components/SnowEffect";
 import "./globals.css";
 
 const inter = Inter({
@@ -56,6 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable} data-scroll-behavior="smooth">
       <body className="antialiased bg-white text-neutral-900 selection:bg-orange-100 selection:text-orange-900">
+        <SnowEffect />
         {children}
       </body>
     </html>
