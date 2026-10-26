@@ -40,8 +40,8 @@ export default function HeroSection() {
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-80 sm:h-96 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-100/70 via-white to-transparent pointer-events-none z-0"
       />
 
-      {/* ─── Top: Heading Section (All devices) ─── */}
-      <div className="relative z-30 pt-16 sm:pt-20 lg:pt-24 xl:pt-28 px-5 sm:px-6 text-center max-w-4xl mx-auto w-full">
+      {/* ─── Top: Heading Section (Moved down on mobile with breathing space above hands; laptop unchanged) ─── */}
+      <div className="relative z-30 pt-22 sm:pt-26 lg:pt-24 xl:pt-28 pb-4 sm:pb-6 lg:pb-0 px-5 sm:px-6 text-center max-w-4xl mx-auto w-full">
         {/* Next-Gen Pill Badge: introduces business automation */}
         <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 mb-2.5 sm:mb-3.5 rounded-full bg-neutral-100/90 border border-neutral-200/80 text-[11px] sm:text-xs font-medium text-neutral-700 shadow-2xs backdrop-blur-sm">
           <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -58,16 +58,16 @@ export default function HeroSection() {
           </span>
         </h1>
 
-        {/* Subtitle: gives context and eliminates empty dead space across all screens */}
+        {/* Subtitle: gives context with clean space before hands */}
         <p className="mt-2.5 sm:mt-3.5 text-xs sm:text-sm md:text-base text-neutral-600 max-w-xs sm:max-w-md md:max-w-lg mx-auto leading-relaxed">
           AI Voice Agents & Autonomous Workflows engineered to scale your operations 24/7.
         </p>
       </div>
 
-      {/* ─── Mobile Hands Illustration (< lg): prominent, complete fingers, luminous aura ─── */}
+      {/* ─── Mobile Hands Illustration (< lg): comfortable space from text, prominent, complete fingers ─── */}
       <div
         aria-hidden="true"
-        className="lg:hidden relative z-20 w-full my-auto py-2 sm:py-3 flex items-center justify-center select-none pointer-events-none"
+        className="lg:hidden relative z-20 w-full my-auto pt-3 pb-2 sm:pt-4 sm:pb-3 flex items-center justify-center select-none pointer-events-none"
       >
         {/* Subtle luminous energetic glow behind connection point */}
         <div className="absolute w-44 h-24 bg-gradient-to-r from-orange-400/15 via-amber-300/20 to-blue-400/15 rounded-full blur-2xl pointer-events-none -z-10" />
