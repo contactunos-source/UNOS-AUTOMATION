@@ -15,9 +15,9 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-[92svh] sm:min-h-[94vh] lg:min-h-screen bg-white flex flex-col justify-between overflow-hidden select-none"
+      className="relative w-full min-h-[100svh] sm:min-h-[96vh] lg:min-h-screen bg-white flex flex-col justify-start lg:justify-between overflow-hidden select-none"
     >
-      {/* ─── Desktop Background Visual (lg+ screens) ─── */}
+      {/* ─── Desktop Background Visual (lg+ screens: 100% unchanged) ─── */}
       <div
         aria-hidden="true"
         className="hidden lg:flex absolute inset-0 pointer-events-none items-center justify-center overflow-hidden z-10"
@@ -40,8 +40,8 @@ export default function HeroSection() {
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-80 sm:h-96 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-100/70 via-white to-transparent pointer-events-none z-0"
       />
 
-      {/* ─── Top: Heading Section (Moved down on mobile with breathing space above hands; laptop unchanged) ─── */}
-      <div className="relative z-30 pt-22 sm:pt-26 lg:pt-24 xl:pt-28 pb-4 sm:pb-6 lg:pb-0 px-5 sm:px-6 text-center max-w-4xl mx-auto w-full">
+      {/* ─── Top: Heading Section (Moved down on mobile with clear breathing space above hands; laptop unchanged) ─── */}
+      <div className="relative z-30 pt-24 sm:pt-28 lg:pt-24 xl:pt-28 mb-3 sm:mb-5 lg:mb-0 px-5 sm:px-6 text-center max-w-4xl mx-auto w-full">
         {/* Next-Gen Pill Badge: introduces business automation */}
         <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 mb-2.5 sm:mb-3.5 rounded-full bg-neutral-100/90 border border-neutral-200/80 text-[11px] sm:text-xs font-medium text-neutral-700 shadow-2xs backdrop-blur-sm">
           <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -64,10 +64,10 @@ export default function HeroSection() {
         </p>
       </div>
 
-      {/* ─── Mobile Hands Illustration (< lg): comfortable space from text, prominent, complete fingers ─── */}
+      {/* ─── Mobile Hands Illustration (< lg): clear space from text, no touching, complete hands ─── */}
       <div
         aria-hidden="true"
-        className="lg:hidden relative z-20 w-full my-auto pt-3 pb-2 sm:pt-4 sm:pb-3 flex items-center justify-center select-none pointer-events-none"
+        className="lg:hidden relative z-20 w-full mt-4 mb-6 sm:mt-6 sm:mb-8 flex items-center justify-center select-none pointer-events-none"
       >
         {/* Subtle luminous energetic glow behind connection point */}
         <div className="absolute w-44 h-24 bg-gradient-to-r from-orange-400/15 via-amber-300/20 to-blue-400/15 rounded-full blur-2xl pointer-events-none -z-10" />
@@ -76,13 +76,13 @@ export default function HeroSection() {
         <img
           src="/images/hero-banner-realistic-mobile.jpg"
           alt="Realistic robotic hand on left and realistic human hand on right reaching toward each other"
-          className="w-full max-w-[540px] h-auto object-contain select-none pointer-events-none mx-auto"
+          className="w-full max-w-[440px] sm:max-w-[500px] h-auto object-contain select-none pointer-events-none mx-auto"
           loading="eager"
         />
       </div>
 
       {/* ─── Bottom: CTAs & Trust Badges (All devices) ─── */}
-      <div className="relative z-30 pb-6 sm:pb-8 lg:pb-12 xl:pb-14 px-6 text-center max-w-4xl mx-auto w-full pointer-events-auto">
+      <div className="relative z-30 mt-auto pb-8 sm:pb-10 lg:pb-12 xl:pb-14 px-6 text-center max-w-4xl mx-auto w-full pointer-events-auto">
         {/* Primary CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-[290px] sm:max-w-none mx-auto">
           <a
