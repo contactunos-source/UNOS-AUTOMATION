@@ -1,6 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/lib/config";
+import { motion, useReducedMotion } from "framer-motion";
 
 // WhatsApp Icon
 function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
@@ -12,6 +13,25 @@ function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
 }
 
 export default function HeroSection() {
+  const shouldReduceMotion = useReducedMotion();
+
+  // Incoming text transmission fragments (traveling left -> left ear)
+  const incomingFragments = [
+    { text: "schedule appointment", lane: "top-[10%]", duration: 5.5, delay: 0 },
+    { text: "query: { intent: 'reschedule' }", lane: "top-[40%]", duration: 6.2, delay: 1.8 },
+    { text: "patient inquiry", lane: "top-[70%]", duration: 5.0, delay: 3.2 },
+    { text: "voice in • 16kHz", lane: "top-[25%]", duration: 5.8, delay: 4.0 },
+    { text: "confirm consultation", lane: "top-[55%]", duration: 6.0, delay: 2.2 },
+  ];
+
+  // Outgoing voice fragments (traveling right ear -> right edge)
+  const outgoingFragments = [
+    { text: "AI Voice • 24kHz", lane: "top-[15%]", duration: 5.2, delay: 0.5 },
+    { text: "“Confirmed for tomorrow 3 PM”", lane: "top-[42%]", duration: 6.5, delay: 2.0 },
+    { text: "WhatsApp dispatch: OK", lane: "top-[68%]", duration: 5.8, delay: 3.6 },
+    { text: "CRM updated • 180ms", lane: "top-[30%]", duration: 6.0, delay: 1.2 },
+  ];
+
   return (
     <section
       id="home"
@@ -20,7 +40,7 @@ export default function HeroSection() {
       {/* ─── Subtle Ambient Background Lighting ─── */}
       <div
         aria-hidden="true"
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-80 sm:h-96 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-100/70 via-white to-transparent pointer-events-none z-0"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-80 sm:h-96 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-100/80 via-white to-transparent pointer-events-none z-0"
       />
 
       {/* ─── Top: Heading Section (Above the AI Agent) ─── */}
@@ -47,33 +67,257 @@ export default function HeroSection() {
         </p>
       </div>
 
-      {/* ─── Center: AI Agent Character Visual ─── */}
-      <div className="relative z-10 my-auto py-2 sm:py-3 flex flex-col items-center justify-center w-full max-w-2xl mx-auto pointer-events-none select-none">
+      {/* ─── Center: AI Agent Character with Ear-to-Ear Transmission Flow ─── */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto my-auto py-2 sm:py-4 flex items-center justify-center select-none">
+        
         {/* Ambient Cyan / Aqua Glow matching AI Agent Eyes */}
         <div
           aria-hidden="true"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none -z-10"
         />
 
-        {/* AI Agent Character Image */}
-        <div className="relative flex items-center justify-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <picture>
-            <source srcSet="/images/ai-agent.webp" type="image/webp" />
-            <img
-              src="/images/ai-agent.png"
-              alt="UNOS Autonomous AI Agent"
-              className="h-[220px] xs:h-[250px] sm:h-[300px] md:h-[340px] lg:h-[380px] xl:h-[400px] w-auto max-w-[85vw] object-contain drop-shadow-sm select-none"
-              loading="eager"
-            />
-          </picture>
-        </div>
+        {/* ── Central Robot Anchor Wrapper ── */}
+        <div className="relative inline-flex flex-col items-center justify-center">
 
-        {/* Realistic Soft Contact Shadow under robot feet */}
-        <div
-          aria-hidden="true"
-          className="w-36 sm:w-48 lg:w-56 h-3 sm:h-4 bg-neutral-900/12 rounded-full blur-md -mt-1 sm:-mt-2 pointer-events-none"
-        />
+          {/* ══════════════════════════════════════════════════════════════
+              LEFT SIDE: INCOMING TEXT TRANSMISSION (FLOWING INTO LEFT EAR)
+             ══════════════════════════════════════════════════════════════ */}
+          <div
+            aria-hidden="true"
+            className="absolute top-[22.8%] -translate-y-1/2 right-[73.6%] w-[42vw] max-w-[280px] sm:max-w-[360px] md:max-w-[440px] lg:max-w-[500px] h-20 sm:h-24 md:h-28 pointer-events-none overflow-hidden"
+          >
+            {/* Ambient Transmission Guide Lines */}
+            <svg
+              className="absolute inset-0 w-full h-full text-neutral-300/70"
+              viewBox="0 0 500 100"
+              preserveAspectRatio="none"
+              fill="none"
+            >
+              {/* Upper Converging Rail */}
+              <path
+                d="M 0,25 Q 250,30 495,50"
+                stroke="currentColor"
+                strokeWidth="1.25"
+                strokeDasharray="4 6"
+                className="opacity-60"
+              />
+              {/* Center Direct Rail (Targeting Left Ear) */}
+              <path
+                d="M 0,50 L 495,50"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="text-neutral-300"
+              />
+              {/* Lower Converging Rail */}
+              <path
+                d="M 0,75 Q 250,70 495,50"
+                stroke="currentColor"
+                strokeWidth="1.25"
+                strokeDasharray="4 6"
+                className="opacity-60"
+              />
+              {/* Subtle Cyan Intake Pulse Rail */}
+              <path
+                d="M 200,50 L 495,50"
+                stroke="#22d3ee"
+                strokeWidth="2"
+                strokeLinecap="round"
+                className="opacity-40"
+              />
+            </svg>
+
+            {/* Left Ear Intake Port / Beacon */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 flex items-center justify-center z-20">
+              <span className="absolute w-3.5 h-3.5 rounded-full bg-cyan-400 opacity-75 animate-ping" />
+              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
+            </div>
+
+            {/* Streaming Text Fragments: Travel from far left toward left ear */}
+            {!shouldReduceMotion ? (
+              incomingFragments.map((item, idx) => (
+                <motion.div
+                  key={`in-${idx}`}
+                  className={`absolute ${item.lane} left-0 flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/90 border border-neutral-200/90 shadow-2xs backdrop-blur-xs`}
+                  initial={{ x: "-100%", opacity: 0 }}
+                  animate={{
+                    x: ["-20%", "420%"],
+                    opacity: [0, 0.9, 0.9, 0],
+                  }}
+                  transition={{
+                    duration: item.duration,
+                    delay: item.delay,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <span className="w-1 h-1 rounded-full bg-cyan-500" />
+                  <span className="text-[9px] sm:text-[10px] md:text-[11px] font-mono text-neutral-600 font-medium whitespace-nowrap">
+                    {item.text}
+                  </span>
+                </motion.div>
+              ))
+            ) : (
+              // Static Fallback for Reduced Motion
+              <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-1 items-end">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">
+                  query: {`{ intent: 'book' }`}
+                </span>
+                <span className="px-2 py-0.5 rounded text-[9px] font-mono bg-neutral-100 text-neutral-500 border border-neutral-200">
+                  voice in • 16kHz
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* ══════════════════════════════════════════════════════════════
+              CENTER: AI AGENT CHARACTER IMAGE
+             ══════════════════════════════════════════════════════════════ */}
+          <div className="relative flex items-center justify-center z-10">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <picture>
+              <source srcSet="/images/ai-agent.webp" type="image/webp" />
+              <img
+                src="/images/ai-agent.png"
+                alt="UNOS Autonomous AI Agent"
+                className="h-[220px] xs:h-[250px] sm:h-[300px] md:h-[340px] lg:h-[380px] xl:h-[400px] w-auto max-w-[85vw] object-contain drop-shadow-sm select-none"
+                loading="eager"
+              />
+            </picture>
+          </div>
+
+          {/* Soft Realistic Contact Shadow beneath robot */}
+          <div
+            aria-hidden="true"
+            className="w-36 sm:w-48 lg:w-56 h-3 sm:h-4 bg-neutral-900/12 rounded-full blur-md -mt-1 sm:-mt-2 pointer-events-none"
+          />
+
+          {/* ══════════════════════════════════════════════════════════════
+              RIGHT SIDE: OUTGOING VOICE SIGNAL (FLOWING FROM RIGHT EAR)
+             ══════════════════════════════════════════════════════════════ */}
+          <div
+            aria-hidden="true"
+            className="absolute top-[23.2%] -translate-y-1/2 left-[71.5%] w-[42vw] max-w-[280px] sm:max-w-[360px] md:max-w-[440px] lg:max-w-[500px] h-20 sm:h-24 md:h-28 pointer-events-none overflow-hidden"
+          >
+            {/* Right Ear Broadcast Port / Beacon */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 flex items-center justify-center z-20">
+              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
+              <span className="absolute w-3.5 h-3.5 rounded-full bg-cyan-400 opacity-75 animate-ping" />
+            </div>
+
+            {/* Outgoing Animated Voice Waveform (SVG) */}
+            <svg
+              className="absolute inset-0 w-full h-full"
+              viewBox="0 0 500 100"
+              preserveAspectRatio="none"
+              fill="none"
+            >
+              <defs>
+                {/* Subtle gradient for primary voice frequency wave */}
+                <linearGradient id="voiceWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.9" />
+                  <stop offset="35%" stopColor="#0ea5e9" stopOpacity="0.8" />
+                  <stop offset="70%" stopColor="#f97316" stopOpacity="0.7" />
+                  <stop offset="100%" stopColor="#737373" stopOpacity="0.2" />
+                </linearGradient>
+
+                <linearGradient id="voiceSubGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.5" />
+                  <stop offset="50%" stopColor="#94a3b8" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#cbd5e1" stopOpacity="0.1" />
+                </linearGradient>
+              </defs>
+
+              {/* Baseline Horizontal Center Guide */}
+              <line
+                x1="0"
+                y1="50"
+                x2="500"
+                y2="50"
+                stroke="#e2e8f0"
+                strokeWidth="1"
+                strokeDasharray="2 4"
+              />
+
+              {/* Secondary Harmonic Wave */}
+              <path
+                d="M 5,50 Q 25,65 45,50 T 85,50 T 125,40 T 165,60 T 205,35 T 245,65 T 285,45 T 325,55 T 365,48 T 405,52 T 450,50 L 500,50"
+                stroke="url(#voiceSubGrad)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                className="opacity-70"
+              />
+
+              {/* Primary Dynamic Voice Waveform: rises & falls naturally like human AI speech */}
+              <motion.path
+                d="M 5,50 Q 25,22 45,50 T 85,50 T 125,18 T 165,78 T 205,26 T 245,72 T 285,32 T 325,64 T 365,40 T 405,58 T 450,50 L 500,50"
+                stroke="url(#voiceWaveGrad)"
+                strokeWidth="2"
+                strokeLinecap="round"
+                initial={{ pathLength: shouldReduceMotion ? 1 : 0.8 }}
+                animate={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        d: [
+                          "M 5,50 Q 25,22 45,50 T 85,50 T 125,18 T 165,78 T 205,26 T 245,72 T 285,32 T 325,64 T 365,40 T 405,58 T 450,50 L 500,50",
+                          "M 5,50 Q 25,32 45,50 T 85,50 T 125,28 T 165,68 T 205,18 T 245,80 T 285,25 T 325,70 T 365,36 T 405,54 T 450,50 L 500,50",
+                          "M 5,50 Q 25,18 45,50 T 85,50 T 125,14 T 165,82 T 205,32 T 245,64 T 285,38 T 325,60 T 365,44 T 405,52 T 450,50 L 500,50",
+                          "M 5,50 Q 25,22 45,50 T 85,50 T 125,18 T 165,78 T 205,26 T 245,72 T 285,32 T 325,64 T 365,40 T 405,58 T 450,50 L 500,50",
+                        ],
+                      }
+                }
+                transition={{
+                  duration: 3.6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+
+              {/* Speech Waveform Frequency Nodes */}
+              <circle cx="125" cy="18" r="2" fill="#06b6d4" className="opacity-80" />
+              <circle cx="205" cy="26" r="2.5" fill="#0ea5e9" className="opacity-90" />
+              <circle cx="285" cy="32" r="2" fill="#f97316" className="opacity-80" />
+              <circle cx="365" cy="40" r="1.5" fill="#737373" className="opacity-60" />
+            </svg>
+
+            {/* Outgoing Voice Chips: Broadcast from right ear outward to right edge */}
+            {!shouldReduceMotion ? (
+              outgoingFragments.map((item, idx) => (
+                <motion.div
+                  key={`out-${idx}`}
+                  className={`absolute ${item.lane} left-0 flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/90 border border-neutral-200/90 shadow-2xs backdrop-blur-xs`}
+                  initial={{ x: "0%", opacity: 0 }}
+                  animate={{
+                    x: ["10%", "450%"],
+                    opacity: [0, 0.95, 0.95, 0],
+                  }}
+                  transition={{
+                    duration: item.duration,
+                    delay: item.delay,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <span className="w-1 h-1 rounded-full bg-emerald-500" />
+                  <span className="text-[9px] sm:text-[10px] md:text-[11px] font-mono text-neutral-700 font-medium whitespace-nowrap">
+                    {item.text}
+                  </span>
+                </motion.div>
+              ))
+            ) : (
+              // Static Fallback for Reduced Motion
+              <div className="absolute left-6 top-1/2 -translate-y-1/2 flex flex-col gap-1 items-start">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-100 text-neutral-700 border border-neutral-200">
+                  AI Voice • 24kHz
+                </span>
+                <span className="px-2 py-0.5 rounded text-[9px] font-mono bg-neutral-100 text-emerald-600 border border-neutral-200">
+                  “Confirmed for tomorrow”
+                </span>
+              </div>
+            )}
+          </div>
+
+        </div>
       </div>
 
       {/* ─── Bottom: CTAs & Trust Badges (Below the AI Agent) ─── */}
