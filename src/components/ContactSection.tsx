@@ -149,72 +149,26 @@ export default function ContactSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-2xl mb-14"
+          className="max-w-2xl mx-auto text-center mb-12 sm:mb-14"
         >
-          <p className="text-xs font-semibold uppercase tracking-widest text-orange-600 mb-4">
+          <p className="text-xs font-semibold uppercase tracking-widest text-orange-600 mb-3 sm:mb-4">
             Get in Touch
           </p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
             Let&apos;s Build Something Smarter.
           </h2>
-          <p className="mt-4 text-lg text-neutral-600 leading-relaxed font-light">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-neutral-600 leading-relaxed font-light">
             Tell us a little about your business and what you&apos;d like to automate.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
-          {/* Left Column: Direct Communication */}
-          <motion.aside
-            initial={{ opacity: 0, x: -20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-6"
-          >
-            {/* Email Support Card */}
-            <div className="bg-white rounded-3xl border border-neutral-200/80 p-8 shadow-sm space-y-4">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-orange-700 text-xs font-semibold">
-                Direct Communication
-              </span>
-              <h3 className="text-xl font-bold text-neutral-900 leading-snug">
-                Direct Email Inquiries
-              </h3>
-              <p className="text-sm text-neutral-600 leading-relaxed">
-                Send RFPs, detailed briefs, or custom automation requirements directly to our engineering team.
-              </p>
-              <div className="pt-2">
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="inline-flex items-center gap-2.5 text-sm font-semibold text-neutral-900 hover:text-orange-600 transition-colors group"
-                >
-                  <div className="w-9 h-9 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 group-hover:bg-orange-100 transition-colors">
-                    <svg className="w-4 h-4 text-orange-500 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <span>{siteConfig.email}</span>
-                </a>
-              </div>
-              <div className="pt-4 border-t border-neutral-100 space-y-2 text-xs text-neutral-500">
-                <p className="flex items-center gap-2">
-                  <span className="text-orange-500 font-bold">✓</span> Direct developer & automation specialist
-                </p>
-                <p className="flex items-center gap-2">
-                  <span className="text-orange-500 font-bold">✓</span> Typically replies within 24 hours
-                </p>
-                <p className="flex items-center gap-2">
-                  <span className="text-orange-500 font-bold">✓</span> Confidential project evaluation
-                </p>
-              </div>
-            </div>
-          </motion.aside>
-
-          {/* Right Column: Contact Enquiry Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-2"
-          >
+        {/* Contact Enquiry Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-2xl sm:max-w-3xl mx-auto"
+        >
             {formState === "success" ? (
               <div className="flex flex-col items-center justify-center text-center py-16 px-6 gap-5 bg-white rounded-3xl border border-neutral-200/80 shadow-sm">
                 <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center">
@@ -389,7 +343,6 @@ export default function ContactSection() {
               </form>
             )}
           </motion.div>
-        </div>
       </div>
     </section>
   );

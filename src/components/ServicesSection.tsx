@@ -620,35 +620,6 @@ export default function ServicesSection() {
             </div>
           </motion.article>
         </motion.div>
-
-        {/* Bottom Conversion Callout */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.35, ease }}
-          className="mt-14 lg:mt-16 rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 text-white shadow-xl shadow-orange-500/15 flex flex-col sm:flex-row items-center justify-between gap-6"
-        >
-          <div className="space-y-1 text-center sm:text-left">
-            <h3 className="text-xl sm:text-2xl font-bold tracking-tight">
-              Looking for a custom automation architecture?
-            </h3>
-            <p className="text-sm text-orange-100 font-light">
-              We design, build, and maintain tailored AI workflows and voice reception systems for your specific tech stack.
-            </p>
-          </div>
-
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 bg-white text-neutral-900 text-sm font-semibold rounded-full hover:bg-neutral-100 hover:shadow-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            <span>Inquire About Custom Automations</span>
-            <span className="text-orange-600 font-bold">→</span>
-          </a>
-        </motion.div>
       </div>
     </section>
   );
