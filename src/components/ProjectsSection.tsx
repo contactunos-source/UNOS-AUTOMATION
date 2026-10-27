@@ -44,7 +44,7 @@ function VoiceAgentLiveDemo() {
       </p>
 
       {/* Direct Interactive Call & Live Demo Actions */}
-      <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-3 mb-5">
+      <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-3">
         <a
           href={agentUrl}
           target="_blank"
@@ -66,12 +66,6 @@ function VoiceAgentLiveDemo() {
           <span>Try Live Demo</span>
           <span className="text-neutral-400 text-sm">↗</span>
         </a>
-      </div>
-
-      {/* Clean Technical Specs */}
-      <div className="w-full pt-4 border-t border-neutral-100 flex items-center justify-between text-[11px] text-neutral-400">
-        <span className="font-mono">Agent ID: agent_8501...</span>
-        <span className="text-emerald-600 font-medium">Real-Time WebRTC</span>
       </div>
     </div>
   );
