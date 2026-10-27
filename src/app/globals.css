@@ -38,11 +38,30 @@ body {
 /* Fluid Conduit Line Animations */
 @keyframes conduitFlow {
   0% {
-    stroke-dashoffset: 1000;
+    stroke-dashoffset: 196;
   }
   100% {
     stroke-dashoffset: 0;
   }
+}
+
+/* Hardware-Accelerated Audio Waveform Bars */
+@keyframes eqBarPulse {
+  0% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(0.72);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.eq-bar-anim {
+  transform-origin: center;
+  will-change: transform;
+  animation: eqBarPulse 1.2s ease-in-out infinite alternate;
 }
 
 @keyframes pulseGlow {

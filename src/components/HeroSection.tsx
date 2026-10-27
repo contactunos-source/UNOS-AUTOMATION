@@ -369,34 +369,18 @@ export default function HeroSection() {
             aria-hidden="true"
             className="absolute top-[22%] -translate-y-1/2 left-[94.5%] w-[46vw] max-w-[850px] h-36 sm:h-44 lg:h-52 pointer-events-none flex items-center justify-start overflow-hidden z-20"
           >
-            {/* Continuous Black-and-White Audio Frequency Waveform Bars */}
+            {/* Continuous Black-and-White Audio Frequency Waveform Bars (Hardware-Accelerated CSS) */}
             <div className="pl-1 sm:pl-2 flex items-center gap-1 sm:gap-1.5 w-full h-full overflow-hidden flex-nowrap">
               {refWaveBars.map((bar, i) => (
-                <motion.span
+                <span
                   key={`eq-${i}`}
-                  className="rounded-full bg-neutral-900 shrink-0"
+                  className="rounded-full bg-neutral-900 shrink-0 eq-bar-anim"
                   style={{
                     width: `${bar.w}px`,
                     height: `${bar.h}px`,
-                  }}
-                  animate={
-                    shouldReduceMotion
-                      ? {}
-                      : {
-                          height: [
-                            `${Math.max(6, bar.h * 0.35)}px`,
-                            `${bar.h}px`,
-                            `${Math.max(6, bar.h * 0.7)}px`,
-                            `${bar.h}px`,
-                          ],
-                        }
-                  }
-                  transition={{
-                    duration: 0.9 + (i % 6) * 0.12,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    ease: "easeInOut",
-                    delay: i * 0.03,
+                    animationDuration: `${0.85 + (i % 6) * 0.14}s`,
+                    animationDelay: `${(i % 12) * 0.08}s`,
+                    animationPlayState: shouldReduceMotion ? "paused" : "running",
                   }}
                 />
               ))}

@@ -52,6 +52,14 @@ function ConduitSideWire({
           strokeWidth="2.5"
           strokeLinecap="round"
         />
+        {/* Soft glowing ambient track */}
+        <path
+          d={pathD}
+          stroke="#fed7aa"
+          strokeWidth="4"
+          strokeLinecap="round"
+          className="opacity-40"
+        />
         {/* Luminous glowing orange pulse */}
         <path
           d={pathD}
@@ -62,7 +70,6 @@ function ConduitSideWire({
           style={{
             animation: `conduitFlow ${duration} linear infinite`,
             animationDelay: delay,
-            filter: "drop-shadow(0 0 4px rgba(249, 115, 22, 0.7))",
           }}
         />
       </svg>
@@ -72,15 +79,20 @@ function ConduitSideWire({
 
 export default function StepJourneySection() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, margin: "-40px" });
 
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 35 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease } },
+    hidden: { opacity: 0, y: 25 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
   };
 
   return (
-    <section id="journey" ref={ref} className="py-24 lg:py-32 bg-white relative overflow-hidden">
+    <section
+      id="journey"
+      ref={ref}
+      className="py-24 lg:py-32 bg-white relative overflow-hidden"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "900px" }}
+    >
       {/* Background ambient gradient */}
       <div
         aria-hidden="true"

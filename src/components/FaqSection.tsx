@@ -49,7 +49,12 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" ref={ref} className="py-24 lg:py-32 bg-neutral-50/60 relative overflow-hidden">
+    <section
+      id="faq"
+      ref={ref}
+      className="py-24 lg:py-32 bg-neutral-50/60 relative overflow-hidden"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}
+    >
       <div className="max-w-4xl mx-auto px-6 lg:px-8 relative">
         {/* Reference Video Feature: Section Anchor Badge (Frame 018) */}
         <div className="flex flex-col items-center text-center mb-16">

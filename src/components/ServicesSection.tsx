@@ -129,24 +129,23 @@ const services: ServiceItem[] = [
 
 export default function ServicesSection() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
 
   const containerVariants: Variants = {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.12,
+        staggerChildren: 0.08,
       },
     },
   };
 
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 35 },
+    hidden: { opacity: 0, y: 25 },
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease },
+      transition: { duration: 0.5, ease },
     },
   };
 
@@ -154,36 +153,37 @@ export default function ServicesSection() {
     <section
       id="services"
       ref={ref}
-      className="py-28 lg:py-36 relative overflow-hidden bg-gradient-to-b from-[#FFFDF9] via-[#FFF8F0] to-[#FFFFFF]"
+      className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-[#FFFDF9] via-[#FFF8F0] to-[#FFFFFF]"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "800px" }}
     >
-      {/* Dynamic Lighting Effects & Soft Orange Gradient Ambiance */}
+      {/* Optimized Soft Ambient Lighting (zero heavy blur overdraw) */}
       <div
         aria-hidden="true"
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[650px] pointer-events-none rounded-full opacity-60 blur-3xl"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-[500px] pointer-events-none opacity-50"
         style={{
           background:
-            "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(254, 215, 170, 0.45), rgba(255, 237, 213, 0.25) 50%, transparent 80%)",
+            "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(254, 215, 170, 0.4), rgba(255, 237, 213, 0.15) 50%, transparent 80%)",
         }}
       />
       <div
         aria-hidden="true"
-        className="absolute top-1/3 -right-24 w-[600px] h-[600px] pointer-events-none rounded-full opacity-40 blur-3xl"
+        className="hidden md:block absolute top-1/3 -right-24 w-[500px] h-[500px] pointer-events-none opacity-30"
         style={{
-          background: "radial-gradient(circle, rgba(251, 146, 60, 0.2) 0%, rgba(254, 243, 199, 0.1) 60%, transparent 80%)",
+          background: "radial-gradient(circle, rgba(251, 146, 60, 0.18) 0%, transparent 70%)",
         }}
       />
       <div
         aria-hidden="true"
-        className="absolute bottom-10 -left-24 w-[600px] h-[600px] pointer-events-none rounded-full opacity-35 blur-3xl"
+        className="hidden md:block absolute bottom-10 -left-24 w-[500px] h-[500px] pointer-events-none opacity-25"
         style={{
-          background: "radial-gradient(circle, rgba(254, 215, 170, 0.25) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(254, 215, 170, 0.22) 0%, transparent 70%)",
         }}
       />
 
       {/* Tactile Micro-Grid Texture */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 pointer-events-none opacity-[0.035]"
+        className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
           backgroundImage: "radial-gradient(#ea580c 1px, transparent 1px)",
           backgroundSize: "28px 28px",
@@ -192,12 +192,12 @@ export default function ServicesSection() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl mb-18 lg:mb-20">
+        <div className="max-w-3xl mb-14 lg:mb-18">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease }}
-            className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/90 border border-orange-200/80 shadow-[0_2px_8px_rgba(249,115,22,0.08)] mb-5"
+            transition={{ duration: 0.5, ease }}
+            className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white border border-orange-200/80 shadow-[0_2px_8px_rgba(249,115,22,0.08)] mb-5"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
@@ -209,9 +209,9 @@ export default function ServicesSection() {
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.08, ease }}
+            transition={{ duration: 0.6, delay: 0.05, ease }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 tracking-tight leading-[1.12]"
           >
             Automation Built Around{" "}
@@ -221,9 +221,9 @@ export default function ServicesSection() {
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.16, ease }}
+            transition={{ duration: 0.6, delay: 0.1, ease }}
             className="mt-5 text-lg sm:text-xl text-neutral-600 leading-relaxed font-light max-w-2xl"
           >
             Practical AI voice receptionists, intelligent workflow integrations, and high-conversion web platforms engineered to capture more revenue and free your team from repetitive tasks.
@@ -231,9 +231,9 @@ export default function ServicesSection() {
 
           {/* Quick value props pill bar */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.22, ease }}
+            transition={{ duration: 0.6, delay: 0.15, ease }}
             className="mt-6 flex flex-wrap items-center gap-3 text-xs text-neutral-600"
           >
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-orange-100/60 text-orange-800 font-medium">
@@ -261,22 +261,16 @@ export default function ServicesSection() {
           {/* Card 1: Flagship AI Voice Agents (Featured Bento - spans 2 cols on lg) */}
           <motion.article
             variants={cardVariants}
-            whileHover={{ y: -6, transition: { duration: 0.28, ease } }}
-            onMouseEnter={() => setHoveredCard("voice-agents")}
-            onMouseLeave={() => setHoveredCard(null)}
-            className="group relative md:col-span-2 lg:col-span-2 rounded-[32px] p-8 sm:p-10 bg-white/95 backdrop-blur-xl border border-orange-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-orange-300 hover:shadow-[0_24px_60px_-15px_rgba(249,115,22,0.18)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+            className="group relative md:col-span-2 lg:col-span-2 rounded-[32px] p-8 sm:p-10 bg-white border border-orange-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:border-orange-300 hover:shadow-[0_20px_50px_-15px_rgba(249,115,22,0.15)] transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden"
           >
             {/* Top accent light bar */}
             <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-orange-500 via-amber-400 to-orange-500" />
-
-            {/* Corner ambient glow */}
-            <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-gradient-to-br from-orange-400/20 via-amber-300/15 to-transparent blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
             <div>
               {/* Header metadata row */}
               <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/25 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-orange-500/35 transition-all duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-500/25 group-hover:scale-105 transition-transform duration-300">
                     {services[0].icon("w-6 h-6 text-white")}
                   </div>
                   <div>
@@ -341,11 +335,10 @@ export default function ServicesSection() {
                     {[40, 75, 55, 95, 60, 85, 45, 90, 65, 35].map((val, idx) => (
                       <span
                         key={idx}
-                        className="w-1 rounded-full bg-gradient-to-t from-orange-500 to-amber-300"
+                        className="w-1 rounded-full bg-gradient-to-t from-orange-500 to-amber-300 transition-transform duration-300 group-hover:scale-y-110"
                         style={{
-                          height: `${hoveredCard === "voice-agents" ? Math.min(100, val + 15) : val}%`,
+                          height: `${val}%`,
                           animation: `pulse 1.${idx + 1}s ease-in-out infinite alternate`,
-                          transition: "height 0.3s ease",
                         }}
                       />
                     ))}
@@ -390,15 +383,8 @@ export default function ServicesSection() {
           {/* Card 2: Business Website Development */}
           <motion.article
             variants={cardVariants}
-            whileHover={{ y: -6, transition: { duration: 0.28, ease } }}
-            onMouseEnter={() => setHoveredCard("website-dev")}
-            onMouseLeave={() => setHoveredCard(null)}
-            className="group relative rounded-[32px] p-8 sm:p-9 bg-white/95 backdrop-blur-xl border border-neutral-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:border-orange-200 hover:shadow-[0_24px_60px_-15px_rgba(249,115,22,0.14)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+            className="group relative rounded-[32px] p-8 sm:p-9 bg-white border border-neutral-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:border-orange-200 hover:shadow-[0_20px_50px_-15px_rgba(249,115,22,0.12)] transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden"
           >
-            {/* Top luminous hover highlight */}
-            <div className="absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
-            <div className="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-gradient-to-br from-orange-400/15 via-amber-300/10 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
             <div>
               <div className="flex items-center justify-between mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200/80 flex items-center justify-center text-orange-600 shadow-xs group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-amber-500 group-hover:text-white group-hover:border-transparent transition-all duration-300">
@@ -449,14 +435,8 @@ export default function ServicesSection() {
           {/* Card 3: Workflow Automation */}
           <motion.article
             variants={cardVariants}
-            whileHover={{ y: -6, transition: { duration: 0.28, ease } }}
-            onMouseEnter={() => setHoveredCard("workflow")}
-            onMouseLeave={() => setHoveredCard(null)}
-            className="group relative rounded-[32px] p-8 sm:p-9 bg-white/95 backdrop-blur-xl border border-neutral-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:border-orange-200 hover:shadow-[0_24px_60px_-15px_rgba(249,115,22,0.14)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+            className="group relative rounded-[32px] p-8 sm:p-9 bg-white border border-neutral-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:border-orange-200 hover:shadow-[0_20px_50px_-15px_rgba(249,115,22,0.12)] transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden"
           >
-            <div className="absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
-            <div className="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-gradient-to-br from-orange-400/15 via-amber-300/10 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
             <div>
               <div className="flex items-center justify-between mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200/80 flex items-center justify-center text-orange-600 shadow-xs group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-amber-500 group-hover:text-white group-hover:border-transparent transition-all duration-300">
@@ -507,14 +487,8 @@ export default function ServicesSection() {
           {/* Card 4: Appointment Booking Automation */}
           <motion.article
             variants={cardVariants}
-            whileHover={{ y: -6, transition: { duration: 0.28, ease } }}
-            onMouseEnter={() => setHoveredCard("booking")}
-            onMouseLeave={() => setHoveredCard(null)}
-            className="group relative rounded-[32px] p-8 sm:p-9 bg-white/95 backdrop-blur-xl border border-neutral-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:border-orange-200 hover:shadow-[0_24px_60px_-15px_rgba(249,115,22,0.14)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+            className="group relative rounded-[32px] p-8 sm:p-9 bg-white border border-neutral-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:border-orange-200 hover:shadow-[0_20px_50px_-15px_rgba(249,115,22,0.12)] transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden"
           >
-            <div className="absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
-            <div className="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-gradient-to-br from-orange-400/15 via-amber-300/10 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
             <div>
               <div className="flex items-center justify-between mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200/80 flex items-center justify-center text-orange-600 shadow-xs group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-amber-500 group-hover:text-white group-hover:border-transparent transition-all duration-300">
@@ -565,14 +539,8 @@ export default function ServicesSection() {
           {/* Card 5: WhatsApp, CRM & Lead Automation */}
           <motion.article
             variants={cardVariants}
-            whileHover={{ y: -6, transition: { duration: 0.28, ease } }}
-            onMouseEnter={() => setHoveredCard("crm")}
-            onMouseLeave={() => setHoveredCard(null)}
-            className="group relative rounded-[32px] p-8 sm:p-9 bg-white/95 backdrop-blur-xl border border-neutral-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:border-orange-200 hover:shadow-[0_24px_60px_-15px_rgba(249,115,22,0.14)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+            className="group relative rounded-[32px] p-8 sm:p-9 bg-white border border-neutral-200/90 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:border-orange-200 hover:shadow-[0_20px_50px_-15px_rgba(249,115,22,0.12)] transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden"
           >
-            <div className="absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
-            <div className="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-gradient-to-br from-orange-400/15 via-amber-300/10 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
             <div>
               <div className="flex items-center justify-between mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200/80 flex items-center justify-center text-orange-600 shadow-xs group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-amber-500 group-hover:text-white group-hover:border-transparent transition-all duration-300">

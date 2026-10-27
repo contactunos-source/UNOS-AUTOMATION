@@ -142,7 +142,12 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 lg:py-32 bg-neutral-50" ref={ref}>
+    <section
+      id="contact"
+      className="py-24 lg:py-32 bg-neutral-50"
+      ref={ref}
+      style={{ contentVisibility: "auto", containIntrinsicSize: "800px" }}
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <motion.div

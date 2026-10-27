@@ -13,27 +13,25 @@ export default function Home() {
     <>
       <Navbar />
       <main>
-        <SectionTransition targetId="home">
-          <HeroSection />
-        </SectionTransition>
+        <HeroSection />
 
-        <SectionTransition targetId="journey" delay={0.04}>
+        <SectionTransition delay={0.02}>
           <StepJourneySection />
         </SectionTransition>
 
-        <SectionTransition targetId="services" delay={0.04}>
+        <SectionTransition delay={0.02}>
           <ServicesSection />
         </SectionTransition>
 
-        <SectionTransition targetId="projects" delay={0.04}>
+        <SectionTransition delay={0.02}>
           <ProjectsSection />
         </SectionTransition>
 
-        <SectionTransition targetId="faq" delay={0.04}>
+        <SectionTransition delay={0.02}>
           <FaqSection />
         </SectionTransition>
 
-        <SectionTransition targetId="contact" delay={0.04}>
+        <SectionTransition delay={0.02}>
           <ContactSection />
         </SectionTransition>
       </main>

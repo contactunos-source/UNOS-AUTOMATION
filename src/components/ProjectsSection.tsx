@@ -200,7 +200,12 @@ export default function ProjectsSection() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="projects" className="py-24 lg:py-32 bg-neutral-50/60 relative overflow-hidden" ref={ref}>
+    <section
+      id="projects"
+      className="py-24 lg:py-32 bg-neutral-50/60 relative overflow-hidden"
+      ref={ref}
+      style={{ contentVisibility: "auto", containIntrinsicSize: "800px" }}
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         {/* Header */}
         <motion.div
